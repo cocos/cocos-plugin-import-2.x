@@ -1,0 +1,55 @@
+{
+    "name": "importer",
+    "version": "1.0.0",
+    "package_version": 2,
+    "description": "Importer",
+    "author": "Cocos Creator",
+    "main": "./dist/browser.js",
+    "panels": {
+        "creator": {
+            "title": "i18n:importer.title",
+            "main": "./dist/index.js",
+            "flags": {
+                "save": false
+            },
+            "size": {
+                "width": 360,
+                "height": 560
+            }
+        }
+    },
+    "contributions": {
+        "scene": {
+            "script": "./dist/scene-walker.js"
+        },
+        "menu": [
+            {
+                "path": "i18n:menu.file/i18n:importer.menu.import",
+                "label": "i18n:importer.menu.label",
+                "message": "import-creator-project"
+            }
+        ],
+        "messages": {
+            "import-creator-project": {
+                "methods": [
+                    "importCreatorProject"
+                ]
+            }
+        },
+        "profile": {
+            "importer": {
+                "import-path": {
+                    "type": "string",
+                    "default": ""
+                }
+            }
+        }
+    },
+    "dependencies": {
+        "fs-extra": "^9.1.0",
+        "lodash": "^4.17.10",
+        "node-uuid": "^1.4.8",
+        "plist": "^3.0.1",
+        "xmldom": "^0.1.27"
+    }
+}
