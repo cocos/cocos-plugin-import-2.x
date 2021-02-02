@@ -33,5 +33,5 @@ As the cocos creator does not currently support hot updates for plugins, if deve
 
 ## How to give feedback
 
-1. [新建 **New issue** 反馈](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
-2. [论坛反馈](https://forum.cocos.org/c/Creator)
+1. [New **New issue**](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
+2. [Forum](https://forum.cocos.org/c/Creator)
