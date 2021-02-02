@@ -11,7 +11,7 @@ As the cocos creator does not currently support hot updates for plugins, if deve
 1. Download [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) or [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) extension packages。
 
 2. Store in the relevant designated location, as follows
-    - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions** (if you don't have one, you can create one yourself)
+    - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
     - To apply to a single project, simply store the folder in the **extensions** folder at the same level as the **assets** file
     
 > **Note**: If you don't have an **extensions** folder, you can create one yourself
