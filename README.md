@@ -11,8 +11,10 @@
 1. 下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) 或者 [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) 插件包。
 
 2. 存放到相关指定位置，如下
-    - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions**（如果没有可以自行创建一个）下即可
-    - 应用于单个项目下，只需要将文件夹存放到与 **assets** 文件同级的 **extensions** 文件夹下（如果没有可以自行创建一个）
+    - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions** 下
+    - 应用于单个项目下，只需要将文件夹存放到与 **assets** 文件同级的 **extensions** 文件夹下
+
+> **注意**: 如果没有 **extensions** 文件夹，需要自行创建一个
 
 3. 启用插件
     
