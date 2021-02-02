@@ -28,7 +28,7 @@
     
     <img style="margin-left: 110px" src="./readme/image/open.png" width="40%" height="40%"/>
 
-## 如果使用插件中遇到问题后，如何反馈问题
+## 如何反馈问题
 
 1. [新建 **New issue** 反馈](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
 2. [论坛反馈](https://forum.cocos.org/c/Creator)
