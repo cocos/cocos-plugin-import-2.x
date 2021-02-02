@@ -2,7 +2,7 @@
 
 [中文](https://github.com/cocos-creator/plugin-import-2.x/blob/main/readme/README.en.md)
 
-This plugin is used to reduce the workload of developers upgrading 2.x projects to 3.0.0.
+This plugin is used to reduce the workload of developers upgrading v2.x projects to v3.0.0.
 
 As the cocos creator does not currently support hot updates for plugins, if developers encounter problems with the plugin, they can quickly resolve them by following the tutorial below to update the plugin.
 
