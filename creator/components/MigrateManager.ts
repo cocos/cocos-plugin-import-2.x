@@ -372,7 +372,7 @@ export class MigrateManager {
                 case 2:
                     type = 'cc.SpotLight';
                     break;
-                case 3:// 环境不支持，已迁移到场景中，而且实现也不一样
+                case 3:// 环境不支持，已导入到场景中，而且实现也不一样
                     break;
             }
         }

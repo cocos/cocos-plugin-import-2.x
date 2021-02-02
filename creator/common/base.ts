@@ -1,5 +1,5 @@
 /**
- * 用于迁移 2d 项目到 3d 项目
+ * 用于导入 2d 项目到 3d 项目
  */
 
 'use strict';
@@ -302,7 +302,7 @@ export abstract class ImporterBase {
     }
 
     /*
-     * 迁移缓存纹理设置
+     * 导入缓存纹理设置
      */
     public async migratePlatformSettings(platformSettings: any) {
         return await migratePlatformSettings(platformSettings);

@@ -2,10 +2,11 @@
 
 module.exports = {
     menu: {
-        import: '迁移',
-        label: 'Cocos Creator 2.x 项目（推荐：2.4.3 及以上的版本）',
+        import: '导入 Cocos Creator 2.x 项目',
         popup_open: '打开原文件',
     },
+
+    tips: "提示：在导入过程中，如果出现错误，可以点击上方的使用说明按钮，来更新插件或者反馈问题。",
 
     search: '搜索 name',
 
@@ -28,19 +29,19 @@ module.exports = {
         message: '选择目录无效',
         detail: '该路径: {path} 不符合，请重新选择 Cocos Creator 2.x 项目的【根目录】。',
         title: '温馨提示！',
-        version: '您当前要导入的项目版本为 {version}，推荐先单独升级到 Cocos Creator 2.4.3 或以上版本，再重新导入；否则无法确保迁移结果的正确性。',
+        version: '您当前要导入的项目版本为 {version}，推荐先单独升级到 Cocos Creator 2.4.3 或以上版本，再重新导入；否则无法确保导入结果的正确性。',
     },
 
-    title: '迁移 Cocos Creator 2.x 项目',
+    title: '导入 Cocos Creator 2.x 项目',
 
     btnSelect: '选择',
-    btnImport: '迁移',
+    btnImport: '导入',
 
-    import_message_init: '迁移 {current} / {total}',
-    import_message: '迁移 {current} / {total} 资源：{name}',
-    complete_message: '迁移完毕',
+    import_message_init: '导入 {current} / {total}',
+    import_message: '导入 {current} / {total} 资源：{name}',
+    complete_message: '导入完毕',
 
-    import_log: '迁移 {path}',
+    import_log: '导入 {path}',
     import_refresh: '-- 刷新中 --',
     import_refreshend: '-- 刷新完成 --',
 
@@ -53,5 +54,5 @@ module.exports = {
     fbx_tips: '检测到 fbx：{fbxName} 内部材质使用了自定义纹理，由于 3.0.0 fbx 添加了新的映射材质功能，从而可能导致纹理丢失，需要自行对 fbx 的材质进行重新映射自定义纹理。\n ' +
               '目标 fbx：{fbxName} {asset({fbxUuid})} \n 使用自定义纹理列表：\n {textureAssets}',
 
-    effect_tips: '目前 3.0 与 2.x Effect 的写法差异大，需要用户自行迁移，Effect: {name} {asset({uuid})}',
+    effect_tips: '目前 3.0 与 2.x Effect 的写法差异大，需要用户自行导入，Effect: {name} {asset({uuid})}',
 };

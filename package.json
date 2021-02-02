@@ -14,7 +14,9 @@
             },
             "size": {
                 "width": 360,
-                "height": 560
+                "height": 560,
+                "min-width": 360,
+                "min-height": 560
             }
         }
     },
@@ -22,10 +24,11 @@
         "scene": {
             "script": "./dist/scene-walker.js"
         },
+
         "menu": [
             {
-                "path": "i18n:menu.file/i18n:importer.menu.import",
-                "label": "i18n:importer.menu.label",
+                "path": "i18n:menu.file",
+                "label": "i18n:importer.menu.import",
                 "message": "import-creator-project"
             }
         ],
@@ -36,6 +39,7 @@
                 ]
             }
         },
+
         "profile": {
             "importer": {
                 "import-path": {
@@ -45,6 +49,7 @@
             }
         }
     },
+
     "dependencies": {
         "fs-extra": "^9.1.0",
         "lodash": "^4.17.10",

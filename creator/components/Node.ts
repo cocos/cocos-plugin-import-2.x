@@ -70,7 +70,7 @@ export class Node {
     static async migrate(index: number, json2D: any, json3D: any) {
         const source = JSON.parse(JSON.stringify(NODE));
         const node = json2D[index];
-        // 先迁移 components
+        // 先导入 components
         if (node._components) {
             for (const component of node._components) {
                 const element = source._components.find((obj: any) => {

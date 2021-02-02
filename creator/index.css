@@ -30,6 +30,12 @@
     background: var(--color-normal-fill-emphasis);
 }
 
+.tips {
+    width: 96%;
+    margin: auto;
+    padding-bottom: 10px;
+}
+
 :host > footer {
     padding: 10px 20px 10px 20px;
 }

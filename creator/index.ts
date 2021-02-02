@@ -29,10 +29,7 @@ exports.style = readFileSync(join(__dirname, '../creator/index.css'), 'utf8');
 
 const { I18n, Dialog, Message } = Editor;
 
-const MANUAL: any = {
-    'en': "https://github.com/cocos-creator/creator-docs/blob/v3.0/en/release-notes/upgrade-guide-v3.0.md#how-to-migrate-cocos-creator-2x-projects",
-    'zh': "https://github.com/cocos-creator/creator-docs/blob/v3.0/zh/release-notes/upgrade-guide-v3.0.md#%E5%A6%82%E4%BD%95%E8%BF%81%E7%A7%BB-cocos-creator-2x-%E9%A1%B9%E7%9B%AE",
-};
+const MANUAL: string = 'https://github.com/cocos-creator/migrate-cocos-creator2.x-plugin';
 
 exports.linteners = {
     resize() {
@@ -45,6 +42,7 @@ exports.template = `
         <h1>
             <ui-label value="i18n:importer.title"></ui-label>
         </h1>
+        
         <ui-progress></ui-progress>        
 
         <ui-file 
@@ -53,12 +51,12 @@ exports.template = `
             placeholder="i18n:importer.select_dialog.title"
         ></ui-file>
     </header>
-    
     <section>
         <ui-tree></ui-tree>
     </section>
-        
+                
     <footer>
+        
         <ui-button class="btn_notes">
             <ui-label value="i18n:importer.btn_notes"></ui-label>
         </ui-button>
@@ -72,6 +70,9 @@ exports.template = `
             <ui-label value="i18n:importer.btnImport"></ui-label>
         </ui-button>       
     </footer>
+    
+    <ui-label class="tips" value="i18n:importer.tips"></ui-label>
+    
     <iframe class="engine2D" style="display: none"></iframe>
 `;
 
@@ -602,9 +603,8 @@ exports.ready = async function() {
     });
 
     this.$.notes && this.$.notes.addEventListener('confirm', () => {
-        const page = MANUAL[I18n.getLanguage()] || MANUAL['en'];
         const electron = require('electron');
-        electron.shell.openExternal(page);
+        electron.shell.openExternal(MANUAL);
     });
 
     const path = await Editor.Profile.getConfig('importer', 'import-path');

@@ -2,10 +2,11 @@
 
 module.exports = {
     menu: {
-        import: 'Migration',
-        label: 'Cocos Creator 2.x project (recommended: version 2.4.3 and above)',
+        import: 'Import Cocos Creator 2.x project',
         popup_open: 'Open File',
     },
+
+    tips: "Tips: If an error occurs while importing a project, you can update the plugin in the 'Import' panel to update the plugin or give feedback on any possible issues.",
 
     btn_notes: 'Manual',
 
@@ -26,21 +27,21 @@ module.exports = {
         message: 'The selection is invalid.',
         detail: 'The path: {path} is invalid, please reselect the root directory of the Cocos Creator 2.x project.',
         title: 'Warm Tips!',
-        version: 'The version of the project you are importing is {version}. It is recommended that you upgrade to Cocos Creator 2.4.3 or above separately before re-importing; otherwise the migration results will not be guaranteed to be correct.',
+        version: 'The version of the project you are importing is {version}. It is recommended that you upgrade to Cocos Creator 2.4.3 or above separately before re-importing; otherwise the Import results will not be guaranteed to be correct.',
     },
 
-    title: 'Migration Cocos Creator 2.x Project',
+    title: 'Import Cocos Creator 2.x Project',
 
     btnSelect: 'Select',
-    btnImport: 'Migration',
+    btnImport: 'Import',
 
     search: 'search name',
 
-    import_message_init: 'migrating {current} / {total}',
-    import_message: 'migrating {current} / {total} asset: {name}',
-    complete_message: 'migration complete',
+    import_message_init: 'importing {current} / {total}',
+    import_message: 'importing {current} / {total} asset: {name}',
+    complete_message: 'Import complete',
 
-    import_log: 'migrating {path}',
+    import_log: 'importing {path}',
     import_refresh: '-- Refreshing --',
     import_refreshend: '-- Refresh completed --',
 
