@@ -14,7 +14,7 @@ As the cocos creator does not currently support hot updates for plugins, if deve
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
     - To apply to a single project, simply store the folder in the **extensions** folder at the same level as the **assets** file
     
-> **Note**: If you don't have an **extensions** folder, you can create one yourself
+> **Note**: If you do not have an **extensions** folder, you will need to create one yourself
     
 
 3. Enable Extension
