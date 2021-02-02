@@ -9,10 +9,13 @@
 ## 如何更新插件
 
 1. 进行点击下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) 或者 [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) 包。
+
 2. 存放到相关指定位置，如下
     - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions**（如果没有可以自行创建一个）下即可
     - 应用于单个项目下，只需要将文件夹存放到与 **assets** 文件同级的 **extensions** 文件夹下（如果没有可以自行创建一个）
+
 3. 启用插件
+    
     1.通过主菜单打开插件管理器
     
     <img src="./readme/image/main-menu.png" width="20%" height="20%"/>
