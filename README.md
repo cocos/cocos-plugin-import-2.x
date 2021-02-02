@@ -2,7 +2,7 @@
 
 [English](https://github.com/cocos-creator/plugin-import-2.x/blob/main/readme/README.en.md)
 
-该插件用于减少开发者升级 2.x 项目到 3.0.0 的工作量。
+该插件用于减少开发者升级 v2.x 项目到 v3.0.0 的工作量。
 
 由于目前编辑器无法支持插件热更新，所以如果开发者在使用该插件的时遇到问题后，通过下方教程去更新该插件，从而能够快速解决问题。
 
@@ -32,5 +32,5 @@
 
 ## 如何反馈问题
 
-1. [新建 **New issue** 反馈](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
-2. [论坛反馈](https://forum.cocos.org/c/Creator)
+1. [新建 **New issue**](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
+2. [论坛](https://forum.cocos.org/c/Creator)
