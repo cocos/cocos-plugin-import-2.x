@@ -1,6 +1,6 @@
 # plugin-import-2.x
 
-[English](../README.en.md)
+[English](https://github.com/cocos-creator/plugin-import-2.x/blob/main/readme/README.en.md)
 
 该插件用于减少开发者升级 2.x 项目到 3.0.0 的工作量。
 
@@ -8,7 +8,7 @@
 
 ## 如何更新插件
 
-1. 进行点击下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) 或者 [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) 包。
+1. 下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) 或者 [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) 插件包。
 
 2. 存放到相关指定位置，如下
     - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions**（如果没有可以自行创建一个）下即可
