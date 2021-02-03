@@ -8,7 +8,7 @@
 
 ## 如何更新插件
 
-1. 下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.zip) 或者 [tar.gz](https://github.com/cocos-creator/plugin-import-2.x/archive/v1.0.tar.gz) 插件包。
+1. 下载 [zip](https://github.com/cocos-creator/plugin-import-2.x/releases/download/v1.0/importer.zip) 插件包。
 
 2. 存放到相关指定位置，如下
     - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions** 下
