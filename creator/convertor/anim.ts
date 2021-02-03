@@ -91,7 +91,7 @@ export class AnimImporter extends ImporterBase {
             };
         }
 
-        if (value.__uuid__) {
+        if (value && value.__uuid__) {
             if (key === 'spriteFrame' || key === 'texture') {
                 value = await ImporterBase.getUuid(value.__uuid__, key);
             }
