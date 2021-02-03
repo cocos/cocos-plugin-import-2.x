@@ -36,3 +36,6 @@
 
 1. [新建 **New issue**](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
 2. [论坛](https://forum.cocos.org/c/Creator)
+
+如果现有项目因为特殊原因需要升级，并且遇到了技术上或者工作量上的困难，也可以联系 `zhengxiong.zhao@cocos.com` 获取我们的人工协助！
+
