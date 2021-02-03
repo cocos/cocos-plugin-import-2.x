@@ -2,6 +2,8 @@
 
 [English](https://github.com/cocos-creator/plugin-import-2.x/blob/main/readme/README.en.md)
 
+[Cocos Creator 3.0 升级指南](https://github.com/cocos-creator/creator-docs/blob/v3.0/zh/release-notes/upgrade-guide-v3.0.md)
+
 该插件用于减少开发者升级 v2.x 项目到 v3.0.0 的工作量。
 
 由于目前编辑器无法支持插件热更新，所以如果开发者在使用该插件时遇到问题，通过下方教程去更新插件，从而能够快速解决问题，无需等待编辑器版本更新。
