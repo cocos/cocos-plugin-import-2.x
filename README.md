@@ -29,6 +29,8 @@
     3.启用插件
     
     <img style="margin-left: 110px" src="./readme/image/open.png" width="40%" height="40%"/>
+    
+> **注意**: 如果出现 2 个菜单的话，重启编辑器即可。（该问题是已知问题，后续会修复）
 
 ## 如何反馈问题
 
