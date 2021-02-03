@@ -6,7 +6,7 @@ module.exports = {
         popup_open: 'Open File',
     },
 
-    tips: "Tips: If an error occurs while importing a project, you can update the plugin in the 'Import' panel to update the plugin or give feedback on any possible issues.",
+    tips: "Tips: If an error occurs while importing a project, you can update the plugin in the 'Manual' panel to update the plugin or give feedback on any possible issues.",
 
     btn_notes: 'Manual',
 
