@@ -2,6 +2,8 @@
 
 [中文](https://github.com/cocos-creator/plugin-import-2.x/blob/main/README.md)
 
+[Cocos Creator 3.0 Upgrade Guide](https://github.com/cocos-creator/creator-docs/blob/v3.0/en/release-notes/upgrade-guide-v3.0.md)
+
 This plugin is used to reduce the workload of developers upgrading v2.x projects to v3.0.0.
 
 As the editor does not currently support hot updates for plugins, if developers encounter problems with the plugin, use the tutorial below to update the plugin so that they can quickly fix the problem without having to wait for the editor version to be updated.
