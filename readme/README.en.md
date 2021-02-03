@@ -30,6 +30,8 @@ As the cocos creator does not currently support hot updates for plugins, if deve
     3.Enable extension
     
     <img style="margin-left: 110px" src="./image/open.png" width="50%" height="50%"/>
+    
+> **NOTE**: If 2 menus appear, restart the editor. (This is a known issue and will be fixed later)    
 
 ## How to give feedback
 
