@@ -37,3 +37,6 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 1. [New **New issue**](https://github.com/cocos-creator/plugin-import-2.x/issues/new) 
 2. [Forum](https://forum.cocos.org/c/Creator)
+
+If an existing project needs to be upgraded under special circumstances, and technical or workload difficulties are encountered, please contact [slackmoehrle@cocos.com](mailto:slackmoehrle@cocos.com) for assistance!
+
