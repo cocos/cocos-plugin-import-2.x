@@ -4,7 +4,7 @@
 
 This plugin is used to reduce the workload of developers upgrading v2.x projects to v3.0.0.
 
-As the cocos creator does not currently support hot updates for plugins, if developers encounter problems with the plugin, they can quickly resolve them by following the tutorial below to update the plugin.
+As the editor does not currently support hot updates for plugins, if developers encounter problems with the plugin, use the tutorial below to update the plugin so that they can quickly fix the problem without having to wait for the editor version to be updated.
 
 ## How to update the plugin
 
