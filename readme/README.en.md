@@ -1,6 +1,6 @@
 # plugin-import-2.x
 
-[中文](https://github.com/cocos-creator/plugin-import-2.x/blob/main/readme/README.en.md)
+[中文](https://github.com/cocos-creator/plugin-import-2.x)
 
 This plugin is used to reduce the workload of developers upgrading v2.x projects to v3.0.0.
 
