@@ -5,6 +5,9 @@
     "description": "Importer",
     "author": "Cocos Creator",
     "main": "./dist/browser.js",
+    "scripts": {
+        "build": "node ./unpack/index.js"
+    },
     "panels": {
         "creator": {
             "title": "i18n:importer.title",
@@ -24,7 +27,6 @@
         "scene": {
             "script": "./dist/scene-walker.js"
         },
-
         "menu": [
             {
                 "path": "i18n:menu.file",
@@ -39,7 +41,6 @@
                 ]
             }
         },
-
         "profile": {
             "importer": {
                 "import-path": {
@@ -49,7 +50,6 @@
             }
         }
     },
-
     "dependencies": {
         "fs-extra": "^9.1.0",
         "lodash": "^4.17.10",
