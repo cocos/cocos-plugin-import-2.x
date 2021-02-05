@@ -7,12 +7,7 @@
     "strict": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": [
-      "node",
-
-      "../../@types/private"
-    ]
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "./static",

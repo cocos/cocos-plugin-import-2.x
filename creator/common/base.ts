@@ -386,7 +386,7 @@ export abstract class ImporterBase {
                             await converter.afterImport();
                         }
                     }
-                    const readmePath = join(Editor.Project.path, 'migrate-resources', 'README.md');
+                    const readmePath = join(Editor.Project.path, 'asset', 'migrate-resources', 'README.md');
                     if (!existsSync(readmePath)) {
                         ensureDirSync(dirname(readmePath));
                         writeFileSync(readmePath, readFileSync(join(defaultAssetsRootPath, 'migrate-resources', 'README.md'), {encoding: 'utf8'}));
