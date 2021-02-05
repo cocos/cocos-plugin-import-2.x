@@ -30,9 +30,12 @@ export class EditBox {
 
     static async migrate(json2D: any) {
         const source = JSON.parse(JSON.stringify(EDITBOX));
-        for (const key in json2D) {
+        for (let key in json2D) {
             const value = json2D[key];
             if (key === '__type__' || value === undefined || value === null) { continue; }
+            if (key.startsWith('_N$')) {
+                key = key.replace(/N\$/, '');
+            }
             source[key] = value;
         }
         return source;
