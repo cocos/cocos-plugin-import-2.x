@@ -10,7 +10,9 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 ## How to update the plugin
 
-1. Click to download: [Latest plug-in package](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
+1. Click to download: 
+    - 20210308: Fixing an error in parsing ts scripts
+       - [Latest plug-in package](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. Store in the relevant designated location, as follows
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
