@@ -588,14 +588,15 @@ export async function parseTSCode(baseClassName: string, path: string) {
     let otherImportCode = '';
     let otherDecoratorCode = '';
     let cccclassCode = '';
-    let exportClassCode = '';
     let contentCode = '';
     let openClass = false;
+    let waitOpenClass = false;// 需要检测到 { 才能开启 openClass
     let classIndex = 0;
     let openFunctions: boolean | undefined = undefined;
     let funcIndex = 0;
     let openConstructor: boolean | undefined = undefined;
     let constructorIndex = 0;
+
     function pushImports(name: string) {
         name = RENAME_COMPONENT[name] || name;
         if (!imports.includes(name)) {
@@ -604,8 +605,16 @@ export async function parseTSCode(baseClassName: string, path: string) {
         return name;
     }
 
-    function replaceCodeByClassName(line: string, noTrimLine: string) {
-        let classNames = match(line, '\:? ?(cc\.)', 'g');
+    function replaceCodeByClassName(line: string, noTrimLine: string, isFunc?: boolean) {
+        let classNames;
+        if (isFunc) {
+            // 删除只需要判断是否是 cc.xx
+            classNames = match(line, '\:? (cc\.)', 'g');
+        }
+        else {
+            classNames = match(line, '\:? ?(cc\.)', 'g');
+        }
+
         if (classNames) {
             let newline = noTrimLine;
             for (let className of classNames) {
@@ -634,23 +643,26 @@ export async function parseTSCode(baseClassName: string, path: string) {
             line = line.trim();
 
             if (!openClass) {
-                if (line.includes('export default class ') || line.includes('export class ')) {
-                    const name = match(line, 'class? ') as string;
-                    if (name) {
-                        line = line.replace(name, baseClassName);
-                    }
+                if (line.includes('export default class ') || line.includes('export class ') || waitOpenClass) {
+                    // const name = match(line, 'class? ') as string;
+                    // if (name) {
+                    //     line = line.replace(name, baseClassName);
+                    // }
                     let extend = match(line, 'extends ?(cc\.)') as string;
                     if (extend) {
                         let newExtend = pushImports(extend);
-                        exportClassCode += line.replace(`cc.${extend}`, newExtend);
+                        contentCode += line.replace(`cc.${extend}`, newExtend);
                     }
                     else {
-                        exportClassCode += line;
+                        contentCode += line;
                     }
+                    contentCode += '\n';
                     classIndex = syncIndex(line, classIndex);
                     if (classIndex === 0) {
+                        waitOpenClass = true;
                         return;
                     }
+                    waitOpenClass = false;
                     openClass = true;
                 }
                 else {
@@ -698,7 +710,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
                 // --------------- 检测是否解析类完毕 ---------------
                 classIndex = syncIndex(line, classIndex);
                 if (classIndex === 0 && (line.endsWith('}') || line.endsWith('};'))) {
-                    contentCode += '}\n';
+                    contentCode += '}\n\n';
                     openClass = false;
                     return;
                 }
@@ -749,6 +761,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
             console.error(e);
         }
     });
+
     let content = '';
     content = addCode(content, topCode);
     let importCode = `import { `;
@@ -764,7 +777,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
     content = addCode(content, otherImportCode);
     content = addCode(content, cccclassCode.replace(/@ccclass/, `@ccclass('${baseClassName}')`));
     content = addCode(content, otherDecoratorCode);
-    content = addCode(content, exportClassCode);
+    // content = addCode(content, exportClassCode);
     content = addCode(content, contentCode);
 
     return {
