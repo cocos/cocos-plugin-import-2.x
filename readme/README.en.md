@@ -11,7 +11,7 @@ As the editor does not currently support hot updates for plugins, if developers 
 ## How to update the plugin
 
 1. Click to download: 
-    - 20210308: Fixing an error in parsing ts scripts
+    - 20210308: Fix the problem that the class name of the ts script is lost when parsing
        - [Latest plug-in package](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. Store in the relevant designated location, as follows
