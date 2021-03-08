@@ -11,7 +11,7 @@
 ## 如何更新插件
 
 1. 点击进行下载：
-    - 20210308: 修复解析 ts 脚本错误的问题
+    - 20210308: 修复解析 ts 脚本类名丢失的问题
        - [插件包](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. 存放到相关指定位置，如下
