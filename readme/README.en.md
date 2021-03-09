@@ -12,6 +12,7 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 1. Download: 
     - 20210309: 
+        - Support for migration of the textureUuid field in plist
         - Fix the problem that the class name of the ts script is lost when parsing
         - Fix the issue of SpriteFrame missing in animation clips
             - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
