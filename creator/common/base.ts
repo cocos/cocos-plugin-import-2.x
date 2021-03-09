@@ -358,6 +358,12 @@ export abstract class ImporterBase {
         if (subAssets) {
             uuid = subAssets.baseUuid;
         }
+        else {
+            const projectAssets = importProjectAssets.get(uuid);
+            if (projectAssets) {
+                uuid = projectAssets.outUuid;
+            }
+        }
         const info = getDefaultAssets2D(uuid);
         if (info && info.path) {
             // 如果是内置资源与 3d 的一致就直接用 3D 的
