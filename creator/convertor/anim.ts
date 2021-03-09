@@ -98,6 +98,9 @@ export class AnimImporter extends ImporterBase {
             else {
                 value = await ImporterBase.getUuid(value.__uuid__);
             }
+            return {
+                __uuid__: value
+            }
         }
         return value;
     }
