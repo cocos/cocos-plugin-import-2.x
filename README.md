@@ -13,6 +13,7 @@
 1. 下载：
     - 20210309: 
         - 支持粒子中 textureUuid 字段迁移
+        - v2.x 迁移到 v3.0.0 之后，按钮不可点击的问题
         - 修复解析 ts 脚本类名丢失的问题
         - 修复动画剪辑中 SpriteFrame 丢失的问题
             - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
