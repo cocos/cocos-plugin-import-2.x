@@ -96,7 +96,9 @@ export class PlistImporter extends ImporterBase {
                 data.spriteFrameUuid = await ImporterBase.getUuid(data.spriteFrameUuid, 'spriteFrame');
             }
             else if (data.textureUuid) {
-                data.textureUuid = await ImporterBase.getUuid(data.textureUuid, 'texture');
+                // textureUuid 转成 spriteFrameUuid
+                data.spriteFrameUuid = await ImporterBase.getUuid(data.textureUuid, 'spriteFrame');
+                delete data.textureUuid;
             }
             if (data.blendFuncSource) {
                 data.blendFuncSource = getBlendFactor2DTo3D(data.blendFuncSource);
