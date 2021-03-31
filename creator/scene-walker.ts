@@ -1,4 +1,4 @@
-
+// @ts-ignore
 import { writeFileSync, existsSync, ensureDirSync } from 'fs-extra';
 import { join } from "path";
 

@@ -3,9 +3,12 @@
  */
 
 'use strict';
+
+// @ts-ignore
 import { v4 } from 'node-uuid';
 import { nameToId } from './utlis';
 import { relative, join, dirname, parse, extname, ParsedPath } from 'path';
+// @ts-ignore
 import { existsSync, ensureDirSync, copyFileSync, readJSONSync, writeJSONSync, readFileSync, writeFileSync } from 'fs-extra';
 import {
     migratePlatformSettings,

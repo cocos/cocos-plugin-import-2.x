@@ -1,6 +1,7 @@
 'use strict';
 import { ImporterBase } from '../common/base';
 import { importProjectAssets, searchTmxDependImages } from "../common/utlis";
+// @ts-ignore
 import { writeJSONSync } from "fs-extra";
 
 const IMAGE_EXNAME = ['.png', '.jpg', '.jpeg', '.webp'];

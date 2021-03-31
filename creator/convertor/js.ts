@@ -25,7 +25,7 @@ export class JSImporter extends ImporterBase {
         const baseCode = this.readFileSync();
         if (baseCode) {
             let commentCode = '';
-            baseCode.trim().split('\n').forEach(value => {
+            baseCode.trim().split('\n').forEach((value: string) => {
                 commentCode += '// ' + value + `\n`;
             });
 

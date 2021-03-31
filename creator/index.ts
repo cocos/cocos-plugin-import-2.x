@@ -1,7 +1,8 @@
 'use strict';
 
+// @ts-ignore
 import { shell } from 'electron';
-
+// @ts-ignore
 import { readFileSync, statSync, readdirSync, existsSync, writeFileSync, readJSONSync, writeJSONSync } from 'fs-extra';
 import { join, basename, extname, relative, dirname } from 'path';
 
@@ -260,7 +261,7 @@ exports.methods = {
         const root = join(Editor.Project.path, 'assets');
         function step(file: string) {
             const files = readdirSync(file);
-            files.forEach((item) => {
+            files.forEach((item: any) => {
                 const fPath = join(file, item);
                 const stat = statSync(fPath);
                 if(stat.isDirectory()) {

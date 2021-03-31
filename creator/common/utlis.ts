@@ -1,9 +1,11 @@
 'use strict';
+// @ts-ignore
 import { readdirSync, statSync, readJSONSync, readFileSync, ensureDirSync, copyFileSync, existsSync } from 'fs-extra';
 import { join, dirname, basename, relative, extname } from 'path';
 import { ImporterBase } from "./base";
 import { createReadStream } from 'fs';
 import { createInterface } from 'readline';
+// @ts-ignore
 import { DOMParser } from "xmldom";
 import { createHash } from 'crypto';
 const lodash = require('lodash');
@@ -267,7 +269,7 @@ const getChunks = (path: string, regexp: RegExp, extname: string) => {
     const chunksMap: Map<string, any> = new Map<string, any>();
     function step(dir: string) {
         const names = readdirSync(dir);
-        names.forEach((name) => {
+        names.forEach((name: string) => {
             const file = join(dir, name);
             if (regexp.test(name)) {
                 const name = basename(file, extname);

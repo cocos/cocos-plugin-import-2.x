@@ -14,7 +14,7 @@ export class TSImporter extends ImporterBase {
             let code = this.readFileSync();
             if (code) {
                 let commentCode = '';
-                code.trim().split('\n').forEach(value => {
+                code.trim().split('\n').forEach((value: string) => {
                     commentCode += '// ' + value + `\n`;
                 });
                 const data = await parseTSCode(name, this.sourceFsPath);

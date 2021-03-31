@@ -1,5 +1,6 @@
 'use strict';
 import { ImporterBase } from '../common/base';
+// @ts-ignore
 import { readFile, writeJSONSync } from 'fs-extra';
 import { basename, extname, parse } from 'path';
 import { getBlendFactor2DTo3D, importProjectAssets, importSubAssets } from "../common/utlis";

@@ -2,6 +2,7 @@
 import { ImporterBase } from '../common/base';
 import { chunksCacheBy2D } from '../common/utlis';
 import {basename, dirname} from "path";
+// @ts-ignore
 import { ensureDirSync } from "fs-extra";
 
 export class EffectImporter extends ImporterBase {

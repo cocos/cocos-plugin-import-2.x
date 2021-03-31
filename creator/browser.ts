@@ -1,6 +1,8 @@
 'use strict';
 
-/**
+declare const Editor: any;
+
+    /**
  * 插件定义的方法
  * Methods defined by extension
  * 可以在 package.json 里的 contributions 里定义 messages 触发这里的方法
