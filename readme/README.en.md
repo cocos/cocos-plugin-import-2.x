@@ -30,15 +30,15 @@ As the editor does not currently support hot updates for plugins, if developers 
     
     1.Open Extension Manager via the main menu
     
-    <img src="./image/main-menu.png" width="20%" height="20%"/>
+    <img src="https://user-images.githubusercontent.com/7564028/114006756-49c20a80-9893-11eb-8744-30215330a10b.png"/>
     
     2.Click on the Refresh button
     
-    <img style="margin-left: 84px" src="./image/update.png" width="50%" height="50%"/> 
+    <img style="margin-left: 84px" src="https://user-images.githubusercontent.com/7564028/114006766-4c246480-9893-11eb-9f46-b0fe03c2c09b.png"/> 
     
     3.Enable extension
     
-    <img style="margin-left: 110px" src="./image/open.png" width="50%" height="50%"/>
+    <img style="margin-left: 110px" src="https://user-images.githubusercontent.com/7564028/114006763-4b8bce00-9893-11eb-88ba-e39e3d00a22a.png"/>
     
 > **NOTE**: If 2 menus appear, restart the editor. (This is a known issue and will be fixed later)    
 

@@ -29,15 +29,15 @@
     
     1.通过主菜单打开插件管理器
     
-    <img src="./readme/image/main-menu.png" width="20%" height="20%"/>
+    <img src="https://user-images.githubusercontent.com/7564028/114006756-49c20a80-9893-11eb-8744-30215330a10b.png"/>
     
     2.点击刷新按钮
     
-    <img style="margin-left: 84px" src="./readme/image/update.png" width="40%" height="40%"/> 
+    <img style="margin-left: 84px" src="https://user-images.githubusercontent.com/7564028/114006766-4c246480-9893-11eb-9f46-b0fe03c2c09b.png"/>
     
     3.启用插件
     
-    <img style="margin-left: 110px" src="./readme/image/open.png" width="40%" height="40%"/>
+    <img style="margin-left: 110px" src="https://user-images.githubusercontent.com/7564028/114006763-4b8bce00-9893-11eb-88ba-e39e3d00a22a.png"/>
     
 > **注意**: 如果出现 2 个菜单的话，重启编辑器即可。（该问题是已知问题，后续会修复）
 
