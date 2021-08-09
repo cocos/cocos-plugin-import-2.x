@@ -18,6 +18,7 @@
         - 修复动画剪辑中 SpriteFrame 丢失的问题
         - 修复组件 ProgressBar 数据丢失的问题
         - 修复 v2.x 含有 StudioWidget 组件升级后导致场景报错的问题
+        - 修复脚本升级 property 没有设置类型的问题
             - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. 存放到相关指定位置，如下

@@ -352,6 +352,7 @@ const RENAME_COMPONENT: any = {
     'cc.SphereCollider3D': 'cc.SphereCollider',
     'cc.RenderComponent': 'cc.UIRenderable',
     'cc.SkeletonAnimation': 'cc.SkeletalAnimation',
+    'cc.StudioWidget': 'cc.Widget',
 };
 
 export class MigrateManager {

@@ -18,7 +18,8 @@ As the editor does not currently support hot updates for plugins, if developers 
         - Fix the issue of SpriteFrame missing in animation clips
         - Fix the problem of missing data in the component ProgressBar
         - Fixes an issue in v2.x with the StudioWidget component that caused an error in the scene after an upgrade
-            - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
+        - Fix script upgrade property not setting type
+              - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. Store in the relevant designated location, as follows
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
