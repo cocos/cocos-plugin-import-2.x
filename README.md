@@ -11,12 +11,13 @@
 ## 如何更新插件
 
 1. 下载：
-    - 20210309: 
+    - 最新: 
         - 支持粒子中 textureUuid 字段迁移
         - 修复 v2.x 迁移到 v3.0.0 之后，按钮不可点击的问题
         - 修复解析 ts 脚本类名丢失的问题
         - 修复动画剪辑中 SpriteFrame 丢失的问题
         - 修复组件 ProgressBar 数据丢失的问题
+        - 修复 v2.x StudioWidget 升级后导致场景报错的问题
             - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. 存放到相关指定位置，如下
