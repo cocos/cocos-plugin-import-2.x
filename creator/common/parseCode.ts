@@ -669,10 +669,10 @@ export async function parseTSCode(baseClassName: string, path: string) {
                     // 直接过滤注释文字
                     if (line.startsWith('/') || line.startsWith('*')) {
                         if (isTop) {
-                            topCode += noTrimLine + '\n';
+                            topCode += '// ' + noTrimLine + '\n';
                         }
                         else if (isOther) {
-                            otherImportCode += noTrimLine + '\n';
+                            otherImportCode += '// ' + noTrimLine + '\n';
                         }
                     }
                     else if (line.includes('cc._decorator')) {
@@ -703,7 +703,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
             else {
                 // 直接过滤注释文字
                 if (line.startsWith('/') || line.startsWith('*')) {
-                    contentCode += noTrimLine + '\n';
+                    contentCode += '// ' + noTrimLine + '\n';
                     return;
                 }
 
@@ -784,3 +784,4 @@ export async function parseTSCode(baseClassName: string, path: string) {
         content: content,
     };
 }
+
