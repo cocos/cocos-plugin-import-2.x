@@ -67,8 +67,9 @@ export class Mask {
                 source._srcBlendFactor = getBlendFactor2DTo3D(value);
             } else if (key === '_dstBlendFactor') {
                 source._dstBlendFactor = getBlendFactor2DTo3D(value);
-            }
-            else {
+            } else if (key === '_materials') {
+                source._materials = [];
+            } else {
                 source[key] = value;
             }
         }

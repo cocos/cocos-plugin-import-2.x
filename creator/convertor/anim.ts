@@ -56,9 +56,9 @@ export class AnimImporter extends ImporterBase {
             return 'z';
         }
         else if (key === 'top' || key === 'bottom' ||
-                 key === 'left' || key === 'right' ||
-                 key === 'horizontalCenter' ||
-                 key === 'verticalCenter') {
+            key === 'left' || key === 'right' ||
+            key === 'horizontalCenter' ||
+            key === 'verticalCenter') {
             return 'editor' + key.substring(0, 1).toLocaleUpperCase() + key.substring(key.length, 1);
         }
         return key;
@@ -71,22 +71,22 @@ export class AnimImporter extends ImporterBase {
                 __type__: "cc.Vec3",
                 x: 0,
                 y: 0,
-                z: value || 0,
+                z: value !== undefined ? value : 0,
             };
         }
         else if (key === 'scale') {
             return {
                 __type__: "cc.Vec3",
-                x: value.x || 1,
-                y: value.y || 1,
-                z: value.z || 1,
+                x: value.x !== undefined ? value.x : 1,
+                y: value.y !== undefined ? value.y : 1,
+                z: value.z !== undefined ? value.z : 1,
             };
         }
         else if (key === 'position') {
             return {
                 __type__: "cc.Vec3",
-                x: value[0] || 0,
-                y: value[1] || 0,
+                x: value[0] !== undefined ? value[0] : 0,
+                y: value[1] !== undefined ? value[1] : 0,
                 z: 0,
             };
         }
