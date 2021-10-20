@@ -42,8 +42,9 @@ export class Layout {
             }
             if (key === '_padding') {
                 source._paddingLeft = source._paddingRight = source._paddingTop = source._paddingBottom = value;
-            }
-            else {
+            } else if (key === '_resize') {
+                source._resizeMode = value;
+            } else {
                 source[key] = value;
             }
         }
