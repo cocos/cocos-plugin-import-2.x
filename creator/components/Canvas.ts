@@ -78,7 +78,7 @@ export class Canvas {
                 if (item) {
                     target._cameraComponent = item;
                     const camera = json2D[item.__id__];
-                    target._alignWithScreen = camera._alignWithScreen;
+                    target._alignCanvasWithScreen = camera._alignWithScreen;
                 }
                 else {
                     Camera.addToScene(target, json3D);
