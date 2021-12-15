@@ -40,6 +40,7 @@ export class JSImporter extends ImporterBase {
                 }
             } else {
                 const data = await parseJSCode(this.sourceFsPath, name);
+                code += data.topNote;
                 if (baseCode.includes('cc.Class(')) {
                     const classInfo: any = await this.queryCCClass(main.$.engine2D, {
                         type: 'js',
@@ -63,7 +64,7 @@ export class JSImporter extends ImporterBase {
                             }));
                         }
                         updateReplaceScriptList(classInfo.replaceScriptList);
-                        code = classInfo.classCode;
+                        code += classInfo.classCode;
                     }
                 } else {
                     console.warn(Editor.I18n.t('importer.skip_script_warn', {

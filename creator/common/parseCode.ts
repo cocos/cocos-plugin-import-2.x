@@ -100,11 +100,26 @@ export async function parseJSCode(path: string, name: string) {
     let funcIndex = 0;
     let openFunctions: boolean | undefined = undefined;
     let content: any;
+    let isSkips = false;
+    let topNote: string = '';
     await readWriteFileByLineWithProcess(path, (line: string) => {
         try {
             // 剔除空格
             let noTrimLine = line;
             line = line.trim();
+
+            if (line.startsWith('/*')) {
+                isSkips = true;
+                topNote += (line + '\n');
+                return;
+            }
+
+            if (isSkips) {
+                isSkips = !line.endsWith('*/');
+                topNote += (line + '\n');
+                return;
+            }
+
             // 直接过滤注释文字
             if (line.startsWith('/') || line.startsWith('*') || !line) {
                 return;
@@ -274,7 +289,7 @@ export async function parseJSCode(path: string, name: string) {
                                 subProp.hasGet += '    }';
                                 return;
                             } else {
-                                subProp.hasGet += noTrimLine.substring(8, noTrimLine.length) + '\n';
+                                subProp.hasGet += '        ' + noTrimLine.substring(noTrimLine.search(/\S/), noTrimLine.length) + '\n';
                             }
                             return;
                         }
@@ -311,7 +326,7 @@ export async function parseJSCode(path: string, name: string) {
                                 subProp.hasSet += '    }';
                                 return;
                             } else {
-                                subProp.hasSet += noTrimLine.substring(8, noTrimLine.length) + '\n';
+                                subProp.hasSet += '        ' + noTrimLine.substring(noTrimLine.search(/\S/), noTrimLine.length) + '\n';
                             }
                             return;
                         }
@@ -435,7 +450,7 @@ export async function parseJSCode(path: string, name: string) {
                             content.statics[subStaticName].content += '    }';
                             return;
                         }
-                        content.statics[subStaticName].content += ('    ' + noTrimLine.substring(8, noTrimLine.length) + '\n');
+                        content.statics[subStaticName].content += ('    ' + noTrimLine.substring(noTrimLine.search(/\S/), noTrimLine.length) + '\n');
                     } else {
                         const info = getInfo(line);
                         content.statics[info.key] = {
@@ -499,7 +514,9 @@ export async function parseJSCode(path: string, name: string) {
                         return;
                     }
                     const func = content.functions[funcName];
-                    func.content += ('        //' + noTrimLine.substring(8, noTrimLine.length) + '\n');
+
+                    const len = noTrimLine.search(/\S/);
+                    func.content += `    ${noTrimLine.substring(0, len)}// ${noTrimLine.substring(len, noTrimLine.length)} \n`;
                     return;
                 }
             }
@@ -510,6 +527,7 @@ export async function parseJSCode(path: string, name: string) {
     });
 
     return {
+        topNote,
         ccKeys,
         classCodeMap,
         importCodeMap,
@@ -703,7 +721,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
             else {
                 // 直接过滤注释文字
                 if (line.startsWith('/') || line.startsWith('*')) {
-                    contentCode += '// ' + noTrimLine + '\n';
+                    contentCode += '//' + noTrimLine + '\n';
                     return;
                 }
 
@@ -746,7 +764,7 @@ export async function parseTSCode(baseClassName: string, path: string) {
                             contentCode += '        ' + line;
                         }
                         else {
-                            contentCode += '        //' + line;
+                            contentCode += '        // ' + line;
                         }
                     }
                     else {
@@ -784,4 +802,3 @@ export async function parseTSCode(baseClassName: string, path: string) {
         content: content,
     };
 }
-
