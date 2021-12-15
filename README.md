@@ -22,6 +22,7 @@
         - 修复动画剪辑中 scale 为 0 时，数据解析错误的问题
         - 修复 Layout resizeMode 数据丢失的问题
         - 修复迁移摄像机 alignWithScreen 属性错误的问题
+        - 修复解析 js 中 getset 格式错误的问题
             - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. 存放到相关指定位置，如下
