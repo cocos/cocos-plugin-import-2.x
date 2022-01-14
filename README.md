@@ -23,7 +23,7 @@
         - 修复 Layout resizeMode 数据丢失的问题
         - 修复迁移摄像机 alignWithScreen 属性错误的问题
         - 修复解析 js 中 getset 格式错误的问题
-            - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
+            - [点击下载](https://github.com/cocos-creator/plugin-import-2.x/archive/refs/heads/main.zip)
 
 2. 存放到相关指定位置，如下
     - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions** 下
