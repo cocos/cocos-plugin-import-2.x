@@ -21,7 +21,7 @@ As the editor does not currently support hot updates for plugins, if developers 
         - Fix script upgrade property not setting type
         - Fix GetSet format error in JS code
     
-             - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/archive/refs/heads/main.zip)
+             - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
 
 2. Store in the relevant designated location, as follows
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
