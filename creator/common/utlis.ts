@@ -591,7 +591,7 @@ export async function readWriteFileByLineWithProcess(readName: any, callback: an
             callback(line);
         });
         readLine.on('close', () => {
-            resolve();
+            resolve(true);
         });
     });
 }

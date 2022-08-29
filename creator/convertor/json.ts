@@ -24,7 +24,7 @@ export class JSONImporter extends ImporterBase {
         return true;
     }
 
-    async validateDragonBonesAtlasAsset() {
+    validateDragonBonesAtlasAsset() {
         let json;
         const text = this.readFileSync(this.sourceFsPath);
         try {
@@ -38,7 +38,7 @@ export class JSONImporter extends ImporterBase {
         return typeof json.imagePath === 'string' && Array.isArray(json.SubTexture);
     }
 
-    async validateDragonBones() {
+    validateDragonBones() {
         var json;
         if (this.sourceFsPath.endsWith('.json')) {
             const text = this.readFileSync(this.sourceFsPath);
@@ -62,7 +62,7 @@ export class JSONImporter extends ImporterBase {
         return Array.isArray(json.armature) || !!json.armatures;
     }
 
-    async validateSpine() {
+    validateSpine() {
         if (this.sourceFsPath.endsWith('.skel')) {
             return true;
         }

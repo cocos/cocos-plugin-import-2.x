@@ -407,25 +407,26 @@ exports.methods = {
                 if (isDone) {
                     await converter.afterImport();
                 }
-                const next = list[i + 1];
-                if (next) {
-                    const extname = next.detail.extname;
-                    const nextConverter = getConverter(extname);
-                    if (nextConverter) {
-                        if (nextConverter.type !== converter.type) {
-                            if (converter.type === 'script' || nextConverter.type === 'script') {
-                                continue;
-                            }
-                            await Message.request('asset-db', 'refresh-asset', 'db://assets');
-                        }
-                    }
-                }
+                // 无需每次都进行刷新，导入完后统一一次刷新
+                // const next = list[i + 1];
+                // if (next) {
+                //     const extname = next.detail.extname;
+                //     const nextConverter = getConverter(extname);
+                //     if (nextConverter) {
+                //         if (nextConverter.type !== converter.type) {
+                //             if (converter.type === 'script' || nextConverter.type === 'script') {
+                //                 continue;
+                //             }
+                //             await Message.request('asset-db', 'refresh-asset', 'db://assets');
+                //         }
+                //     }
+                // }
             }
         }
 
         this.replaceScript();
         console.log(Editor.I18n.t('importer.import_refresh'));
-        await Message.request('asset-db', 'refresh-asset', 'db://assets');
+        // await Message.request('asset-db', 'refresh-asset', 'db://assets');
         console.log(Editor.I18n.t('importer.import_refreshend'));
         try {
             await this.replaceFbx();
@@ -438,6 +439,8 @@ exports.methods = {
 
         this.$.progress.value = 100;
         this.$.progress.message = I18n.t('importer.complete_message');
+        // 统一刷新
+        Editor.Message.send('asset-db', 'refresh');
     },
 
     async onSerializeComponent() {
