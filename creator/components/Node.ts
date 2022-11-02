@@ -106,6 +106,10 @@ export class Node {
                 source._lrot.w = trs[6] === 0 ? 1 : trs[6];
                 source._lscale.x = trs[7];
                 source._lscale.y = trs[8];
+                // 如果不是 3d 节点并且 scale z 是 0，就默认设置为 1
+                if (!node['_is3DNode'] && trs[9] === 0) {
+                    trs[9] = 1;
+                }
                 source._lscale.z = trs[9];
             }
             else if (key === '_eulerAngles') {

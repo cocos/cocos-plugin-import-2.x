@@ -4,7 +4,7 @@ const { writeFileSync, readdirSync, statSync, readFileSync } = require('fs-extra
 
 const skips = ['.idea', 'unpack', '.DS_Store', '.git', '.idea', '.gitignore'];
 
-function step(path, zip, name) {
+function step(path, zip, name, skip) {
   name = name || basename(path);
   if (skips.includes(name)) {
     return;
@@ -13,7 +13,7 @@ function step(path, zip, name) {
   if (stat.isDirectory()) {
     const files = readdirSync(path);
     for (let file of files) {
-      step(join(path, file), zip.folder(name));
+      step(join(path, file), skip ? zip : zip.folder(name));
     }
   } else if (stat.isFile()) {
     zip.file(name, readFileSync(path));
@@ -24,11 +24,11 @@ function step(path, zip, name) {
 
 function unpack() {
   const ROOT_PATH = join(__dirname, '../../importer');
-  const OUT_PATH = join(ROOT_PATH, 'unpack/creator-importer.zip');
+  const OUT_PATH = join(ROOT_PATH, 'unpack/creator-import.zip');
 
   const jsZip = new JSZip();
 
-  step(ROOT_PATH, jsZip, 'creator-importer');
+  step(ROOT_PATH, jsZip, 'creator-import', true);
 
   jsZip.generateAsync({
     type: 'nodebuffer',

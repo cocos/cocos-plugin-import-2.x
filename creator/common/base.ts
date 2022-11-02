@@ -182,6 +182,7 @@ export abstract class ImporterBase {
         if (this._2dTo3dSource) {
             try {
                 if (this.destFsPath.endsWith('.ts') ||
+                    this.destFsPath.endsWith('.js') ||
                     this.destFsPath.endsWith('.plist') ||
                     this.destFsPath.endsWith('.effect')) {
                     writeFileSync(this.destFsPath, this._2dTo3dSource, { encoding: 'utf8' });

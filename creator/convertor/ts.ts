@@ -10,19 +10,31 @@ export class TSImporter extends ImporterBase {
             this._3dMeta.importer = 'typescript';
             let name = this.pathInfo!.name;
             // 类名只保留字母
-            name = await scriptName.getValidClassName(name);
+            name = scriptName.getValidClassName(name);
             let code = this.readFileSync();
             if (code) {
+                let needParse = false;
                 let commentCode = '';
-                code.trim().split('\n').forEach((value: string) => {
-                    commentCode += '// ' + value + `\n`;
+                code.trim().split('\n').forEach((line: string) => {
+                    commentCode += '// ' + line + `\n`;
+                    if (line.includes('export default class ') ||
+                        line.includes('export class ') ||
+                        line.includes('@ccclass')
+                    ) {
+                        needParse = true;
+                    }
                 });
-                const data = await parseTSCode(name, this.sourceFsPath);
-                this._2dTo3dSource = data.content;
-                this._2dTo3dSource += `/**\n`;
-                this._2dTo3dSource += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
-                this._2dTo3dSource += ` */\n`;
-                this._2dTo3dSource += commentCode;
+                if (needParse) {
+                    const data = await parseTSCode(name, this.sourceFsPath);
+                    this._2dTo3dSource = data.content;
+                    this._2dTo3dSource += `/**\n`;
+                    this._2dTo3dSource += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
+                    this._2dTo3dSource += ` */\n`;
+                    this._2dTo3dSource += commentCode;
+                } else {
+                    this._2dTo3dSource = code;
+                }
+
                 scriptList.set(name, this.destFsPath);
             }
             return true;

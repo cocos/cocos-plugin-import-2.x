@@ -21,12 +21,16 @@ export class JSImporter extends ImporterBase {
         let name = this.pathInfo!.name;
 
         // 类名只保留字母
-        name = await scriptName.getValidClassName(name);
+        name = scriptName.getValidClassName(name);
         const baseCode = this.readFileSync();
         if (baseCode) {
+            let needParse = false;
             let commentCode = '';
-            baseCode.trim().split('\n').forEach((value: string) => {
-                commentCode += '// ' + value + `\n`;
+            baseCode.trim().split('\n').forEach((line: string) => {
+                commentCode += '// ' + line + `\n`;
+                if (line.includes('cc.Class(')) {
+                    needParse = true;
+                }
             });
 
             let code = '';
@@ -39,43 +43,47 @@ export class JSImporter extends ImporterBase {
                     importAsPlugin: this._2dMeta.isPlugin,
                 }
             } else {
-                const data = await parseJSCode(this.sourceFsPath, name);
-                code += data.topNote;
-                if (baseCode.includes('cc.Class(')) {
-                    const classInfo: any = await this.queryCCClass(main.$.engine2D, {
-                        type: 'js',
-                        path: this.destFsPath,
-                        name: name,
-                        code: baseCode,
-                        classCount: 1,
-                        ccKeys: data.ccKeys,
-                        importCodeMap: data.importCodeMap,
-                        otherCodeMap: data.otherCodeMap,
-                        classCodeMap: data.classCodeMap,
-                        endCodeMap: data.endCodeMap,
-                        replaceScriptList: replaceScriptList,
-                    });
+                if (needParse) {
+                    const data = await parseJSCode(this.sourceFsPath, name);
+                    code += data.topNote;
+                    if (baseCode.includes('cc.Class(')) {
+                        const classInfo: any = await this.queryCCClass(main.$.engine2D, {
+                            type: 'js',
+                            path: this.destFsPath,
+                            name: name,
+                            code: baseCode,
+                            classCount: 1,
+                            ccKeys: data.ccKeys,
+                            importCodeMap: data.importCodeMap,
+                            otherCodeMap: data.otherCodeMap,
+                            classCodeMap: data.classCodeMap,
+                            endCodeMap: data.endCodeMap,
+                            replaceScriptList: replaceScriptList,
+                        });
 
-                    if (classInfo) {
-                        if (name !== classInfo.name) {
-                            console.warn(Editor.I18n.t('importer.script_rename_tips', {
-                                old: name,
-                                new: classInfo.name
-                            }));
+                        if (classInfo) {
+                            if (name !== classInfo.name) {
+                                console.warn(Editor.I18n.t('importer.script_rename_tips', {
+                                    old: name,
+                                    new: classInfo.name
+                                }));
+                            }
+                            updateReplaceScriptList(classInfo.replaceScriptList);
+                            code += classInfo.classCode;
                         }
-                        updateReplaceScriptList(classInfo.replaceScriptList);
-                        code += classInfo.classCode;
+                    } else {
+                        console.warn(Editor.I18n.t('importer.skip_script_warn', {
+                            name: this.pathInfo!.name,
+                        }));
                     }
+                    code += `/**\n`;
+                    code += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
+                    code += ` */\n`;
+                    code += commentCode;
+                    this._2dTo3dSource = code;
                 } else {
-                    console.warn(Editor.I18n.t('importer.skip_script_warn', {
-                        name: this.pathInfo!.name,
-                    }));
+                    this._2dTo3dSource = baseCode;
                 }
-                code += `/**\n`;
-                code += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
-                code += ` */\n`;
-                code += commentCode;
-                this._2dTo3dSource = code;
                 scriptList.set(this.pathInfo!.name, this.destFsPath);
             }
         }
