@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+
+    description: '用于升级 Cocos Creator 2.x 项目导入插件',
+
     menu: {
         import: '导入 Cocos Creator 2.x 项目',
         popup_open: '打开原文件',

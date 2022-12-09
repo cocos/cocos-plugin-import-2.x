@@ -61,7 +61,7 @@ export class FbxImporter extends ImporterBase {
             for (let useSprite of useSprites) {
                 textureAssetsStr += `${useSprite.name} {asset(${useSprite.uuid})}`;
             }
-            console.warn(Editor.I18n.t('importer.fbx_tips', {
+            console.warn(Editor.I18n.t('plugin-import-2x.fbx_tips', {
                 fbxName: basename(this.destFsPath) || '',
                 fbxUuid: this._3dMeta.uuid,
                 textureAssets: textureAssetsStr,

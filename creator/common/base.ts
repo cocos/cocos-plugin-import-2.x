@@ -160,7 +160,7 @@ export abstract class ImporterBase {
             doImport = this._3dMeta.uuid !== meta.uuid;
         }
         if (doImport) {
-            // console.log(Editor.I18n.t('importer.import_log', {
+            // console.log(Editor.I18n.t('plugin-import-2x.import_log', {
             //     path: this.sourceFsPath,
             // }));
         }
@@ -320,7 +320,7 @@ export abstract class ImporterBase {
             return UUID_UI_2D_TO_3D.get(uuid);
         }
         if (UUID_SKIP_EFFECT.has(uuid)) {
-            console.warn(Editor.I18n.t('importer.effect_warn_tips', {
+            console.warn(Editor.I18n.t('plugin-import-2x.effect_warn_tips', {
                 name: UUID_SKIP_EFFECT.get(uuid) as string,
             }));
         }

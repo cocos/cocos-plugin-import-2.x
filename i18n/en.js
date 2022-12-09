@@ -1,6 +1,9 @@
 'use strict';
 
 module.exports = {
+
+    description: 'Import plugin for upgrading Cocos Creator 2.x projects',
+
     menu: {
         import: 'Import Cocos Creator 2.x project',
         popup_open: 'Open File',

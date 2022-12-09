@@ -23,12 +23,12 @@ function step(path, zip, name, skip) {
 }
 
 function unpack() {
-  const ROOT_PATH = join(__dirname, '../../importer');
-  const OUT_PATH = join(ROOT_PATH, 'unpack/creator-import.zip');
+  const ROOT_PATH = join(__dirname, '../../plugin-import-2x');
+  const OUT_PATH = join(ROOT_PATH, 'unpack/plugin-import-2x.zip');
 
   const jsZip = new JSZip();
 
-  step(ROOT_PATH, jsZip, 'creator-import', true);
+  step(ROOT_PATH, jsZip, 'plugin-import-2x', true);
 
   jsZip.generateAsync({
     type: 'nodebuffer',

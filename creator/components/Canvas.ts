@@ -48,7 +48,7 @@ export class Canvas {
             if (component) {
                 const { width, height } = await getDesignResolution();
                 if (component._contentSize.width !== width || component._contentSize.height !== height) {
-                    console.warn(Editor.I18n.t('importer.canvas_tips', { scene: sceneName +'.scene', name: canvasName }));
+                    console.warn(Editor.I18n.t('plugin-import-2x.canvas_tips', { scene: sceneName +'.scene', name: canvasName }));
                 }
             }
         }

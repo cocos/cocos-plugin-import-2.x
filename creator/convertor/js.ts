@@ -63,7 +63,7 @@ export class JSImporter extends ImporterBase {
 
                         if (classInfo) {
                             if (name !== classInfo.name) {
-                                console.warn(Editor.I18n.t('importer.script_rename_tips', {
+                                console.warn(Editor.I18n.t('plugin-import-2x.script_rename_tips', {
                                     old: name,
                                     new: classInfo.name
                                 }));
@@ -72,12 +72,12 @@ export class JSImporter extends ImporterBase {
                             code += classInfo.classCode;
                         }
                     } else {
-                        console.warn(Editor.I18n.t('importer.skip_script_warn', {
+                        console.warn(Editor.I18n.t('plugin-import-2x.skip_script_warn', {
                             name: this.pathInfo!.name,
                         }));
                     }
                     code += `/**\n`;
-                    code += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
+                    code += ` * ${Editor.I18n.t('plugin-import-2x.plugin_js_tips')}\n`;
                     code += ` */\n`;
                     code += commentCode;
                     this._2dTo3dSource = code;

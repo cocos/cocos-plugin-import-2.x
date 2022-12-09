@@ -28,7 +28,7 @@ export class TSImporter extends ImporterBase {
                     const data = await parseTSCode(name, this.sourceFsPath);
                     this._2dTo3dSource = data.content;
                     this._2dTo3dSource += `/**\n`;
-                    this._2dTo3dSource += ` * ${Editor.I18n.t('importer.plugin_js_tips')}\n`;
+                    this._2dTo3dSource += ` * ${Editor.I18n.t('plugin-import-2x.plugin_js_tips')}\n`;
                     this._2dTo3dSource += ` */\n`;
                     this._2dTo3dSource += commentCode;
                 } else {

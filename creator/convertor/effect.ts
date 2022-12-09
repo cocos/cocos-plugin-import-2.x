@@ -17,7 +17,7 @@ export class EffectImporter extends ImporterBase {
         this._2dTo3dSource = effect;
         this._3dMeta.ver = '1.3.7';
         this._3dMeta.importer = "effect";
-        console.warn(Editor.I18n.t('importer.effect_tips', { name: basename(this.destFsPath), uuid: this._3dMeta.uuid }));
+        console.warn(Editor.I18n.t('plugin-import-2x.effect_tips', { name: basename(this.destFsPath), uuid: this._3dMeta.uuid }));
         return true;
     }
 
