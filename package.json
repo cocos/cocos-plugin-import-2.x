@@ -1,8 +1,8 @@
 {
     "name": "plugin-import-2x",
-    "version": "1.1.3",
+    "version": "1.1.4",
     "package_version": 2,
-    "description": "i18n:description",
+    "description": "i18n:plugin-import-2x.description",
     "author": "Cocos Creator",
     "main": "./dist/browser.js",
     "scripts": {
@@ -29,7 +29,7 @@
         },
         "menu": [
             {
-                "path": "i18n:menu.file",
+                "path": "i18n:plugin-import-2x.menu.file",
                 "label": "i18n:plugin-import-2x.menu.import",
                 "message": "import-creator-project"
             }
