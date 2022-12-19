@@ -1,6 +1,6 @@
 {
     "name": "plugin-import-2x",
-    "version": "1.1.4",
+    "version": "1.1.5",
     "package_version": 2,
     "description": "i18n:plugin-import-2x.description",
     "author": "Cocos Creator",
@@ -29,7 +29,7 @@
         },
         "menu": [
             {
-                "path": "i18n:plugin-import-2x.menu.file",
+                "path": "i18n:menu.file",
                 "label": "i18n:plugin-import-2x.menu.import",
                 "message": "import-creator-project"
             }
