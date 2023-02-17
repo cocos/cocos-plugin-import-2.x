@@ -8,30 +8,43 @@
 
 由于目前编辑器无法支持插件热更新，所以如果开发者在使用该插件时遇到问题，通过下方教程去更新插件，从而能够快速解决问题，无需等待编辑器版本更新。
 
+
+## 更新说明
+
+   - 支持粒子中 textureUuid 字段迁移
+   - 修复 v2.x 迁移到 v3.0.0 之后，按钮不可点击的问题
+   - 修复解析 ts 脚本类名丢失的问题
+   - 修复动画剪辑中 SpriteFrame 丢失的问题
+   - 修复组件 ProgressBar 数据丢失的问题
+   - 修复 v2.x 含有 StudioWidget 组件升级后导致场景报错的问题
+   - 修复脚本升级 property 没有设置类型的问题
+   - 修复动画剪辑中 scale 为 0 时，数据解析错误的问题
+   - 修复 Layout resizeMode 数据丢失的问题
+   - 修复迁移摄像机 alignWithScreen 属性错误的问题
+   - 修复解析 js 中 getset 格式错误的问题
+
 ## 如何更新插件
 
-1. 下载：
-    - 最新: 
-        - 支持粒子中 textureUuid 字段迁移
-        - 修复 v2.x 迁移到 v3.0.0 之后，按钮不可点击的问题
-        - 修复解析 ts 脚本类名丢失的问题
-        - 修复动画剪辑中 SpriteFrame 丢失的问题
-        - 修复组件 ProgressBar 数据丢失的问题
-        - 修复 v2.x 含有 StudioWidget 组件升级后导致场景报错的问题
-        - 修复脚本升级 property 没有设置类型的问题
-        - 修复动画剪辑中 scale 为 0 时，数据解析错误的问题
-        - 修复 Layout resizeMode 数据丢失的问题
-        - 修复迁移摄像机 alignWithScreen 属性错误的问题
-        - 修复解析 js 中 getset 格式错误的问题
-            - [点击下载最新版本](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
+### 编辑器版本 >= 3.7.0
 
-2. 存放到相关指定位置，如下
+1. 通过主菜单打开扩展管理器
+
+![img.png](img.png)
+
+2. 找到 **plugin-import-2x** 插件点击安装或者更新，获取最新版本
+
+![img_1.png](img_1.png)
+
+
+### 编辑器版本 <= 3.6.0
+
+1. 存放到相关指定位置，如下
     - 应用于全局（所有项目）下，只需要将插件文件夹存放到 **用户/.CocosCreator/extensions** 下
     - 应用于单个项目下，只需要将文件夹存放到与 **assets** 文件同级的 **extensions** 文件夹下
 
 > **注意**: 如果没有 **extensions** 文件夹，需要自行创建一个
 
-3. 启用插件
+2. 启用插件
     
     1.通过主菜单打开插件管理器
 

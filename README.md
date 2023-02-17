@@ -8,29 +8,39 @@ This plugin is used to reduce the workload of developers upgrading v2.x projects
 
 As the editor does not currently support hot updates for plugins, if developers encounter problems with the plugin, use the tutorial below to update the plugin so that they can quickly fix the problem without having to wait for the editor version to be updated.
 
+## Update Notes
+
+  - Support for migration of the textureUuid field in plist
+  - Fix buttons click invalid after v2.x migration to v3.0.0
+  - Fix the problem that the class name of the ts script is lost when parsing
+  - Fix the issue of SpriteFrame missing in animation clips
+  - Fix the problem of missing data in the component ProgressBar
+  - Fixes an issue in v2.x with the StudioWidget component that caused an error in the scene after an upgrade
+  - Fix script upgrade property not setting type
+  - Fix GetSet format error in JS code
+
 ## How to update the plugin
 
-1. Download: 
-    - Latest: 
-        - Support for migration of the textureUuid field in plist
-        - Fix buttons click invalid after v2.x migration to v3.0.0
-        - Fix the problem that the class name of the ts script is lost when parsing
-        - Fix the issue of SpriteFrame missing in animation clips
-        - Fix the problem of missing data in the component ProgressBar
-        - Fixes an issue in v2.x with the StudioWidget component that caused an error in the scene after an upgrade
-        - Fix script upgrade property not setting type
-        - Fix GetSet format error in JS code
-    
-             - [Click to download](https://github.com/cocos-creator/plugin-import-2.x/releases/download/main/importer.zip)
+### Editor Version >= 3.7.0
 
-2. Store in the relevant designated location, as follows
+1. Open Extension Manager from the main menu
+
+![img.png](img.png)
+
+2. Find the **plugin-import-2x** plugin and click Install or Update to get the latest version
+
+![img_1.png](img_1.png)
+
+### Editor Version <= 3.6.0
+
+1. Store in the relevant designated location, as follows
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
     - To apply to a single project, simply store the folder in the **extensions** folder at the same level as the **assets** file
     
 > **Note**: If you do not have an **extensions** folder, you will need to create one yourself
     
 
-3. Enable Extension
+2. Enable Extension
     
     1.Open Extension Manager via the main menu
     
