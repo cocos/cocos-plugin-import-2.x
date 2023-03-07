@@ -11,17 +11,7 @@
 
 ## 更新说明
 
-   - 支持粒子中 textureUuid 字段迁移
-   - 修复 v2.x 迁移到 v3.0.0 之后，按钮不可点击的问题
-   - 修复解析 ts 脚本类名丢失的问题
-   - 修复动画剪辑中 SpriteFrame 丢失的问题
-   - 修复组件 ProgressBar 数据丢失的问题
-   - 修复 v2.x 含有 StudioWidget 组件升级后导致场景报错的问题
-   - 修复脚本升级 property 没有设置类型的问题
-   - 修复动画剪辑中 scale 为 0 时，数据解析错误的问题
-   - 修复 Layout resizeMode 数据丢失的问题
-   - 修复迁移摄像机 alignWithScreen 属性错误的问题
-   - 修复解析 js 中 getset 格式错误的问题
+   - 修复解析 js 属性格式错误的问题
 
 ## 如何更新插件
 

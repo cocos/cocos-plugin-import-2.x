@@ -18,6 +18,12 @@ function getType(val: string) {
     if (!val.includes('cc')) {
         return undefined;
     }
+    if (val.startsWith('cc.')) {
+        const array = val.split('.');
+        if (array.length > 3) {
+            return array[1];
+        }
+    }
     return val;
 }
 
@@ -516,7 +522,7 @@ export async function parseJSCode(path: string, name: string) {
                     const func = content.functions[funcName];
 
                     const len = noTrimLine.search(/\S/);
-                    func.content += `    ${noTrimLine.substring(0, len)}// ${noTrimLine.substring(len, noTrimLine.length)} \n`;
+                    func.content += `${noTrimLine.substring(0, len)}// ${noTrimLine.substring(len, noTrimLine.length)} \n`;
                     return;
                 }
             }

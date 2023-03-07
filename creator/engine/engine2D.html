@@ -515,7 +515,7 @@
       if (value === '') {
         return value;
       }
-      if (value === null) {
+      if (value === null || value === 'null') {
         return null;
       }
       // number
@@ -529,85 +529,104 @@
       if (value === false || value === true) {
         return value;
       }
+
+      value = value.replace(/cc./, '');
+
       // array
       if (value.startsWith('[') && value.endsWith(']')) {
         return '[]';
       }
-      let matchArray = value.match(/Vec2/);
+      let matchArray = value.startsWith('Vec2') || value.startsWith('v2');
       if (matchArray) {
+        if (!importCode.includes('Vec2')) {
+          importCode.push('Vec2')
+        }
+        if (value.includes('Vec2.')) {
+          return value;
+        }
         return `new Vec2()`;
       }
-      matchArray = value.match(/v2/);
+      matchArray = value.startsWith('Vec3') || value.startsWith('v3');
       if (matchArray) {
-        return `v2()`;
-      }
-      matchArray = value.match(/Vec3/);
-      if (matchArray) {
+        if (!importCode.includes('Vec3')) {
+          importCode.push('Vec3')
+        }
+        if (value.includes('Vec3.')) {
+          return value;
+        }
         return `new Vec3()`;
       }
-      matchArray = value.match(/v3/);
+      matchArray = value.startsWith('Vec4') || value.startsWith('v4');
       if (matchArray) {
-        return `v3()`;
-      }
-      matchArray = value.match(/Vec4/);
-      if (matchArray) {
+        if (!importCode.includes('Vec4')) {
+          importCode.push('Vec4')
+        }
+        if (value.includes('Vec4.')) {
+          return value;
+        }
         return `new Vec4()`;
       }
-      matchArray = value.match(/v4/);
+      matchArray = value.startsWith('Color') || value.startsWith('color');
       if (matchArray) {
-        return `v4()`;
-      }
-      matchArray = value.match(/cc.Color/);
-      if (matchArray) {
+        if (!importCode.includes('Color')) {
+          importCode.push('Color')
+        }
+        if (value.includes('Color.')) {
+          return value;
+        }
         return `new Color()`;
       }
-      matchArray = value.match(/Size/);
+      matchArray = value.startsWith('Size') || value.startsWith('size');
       if (matchArray) {
+        if (!importCode.includes('Size')) {
+          importCode.push('Size')
+        }
+        if (value.includes('Size.')) {
+          return value;
+        }
         return `new Size()`;
       }
-      matchArray = value.match(/cc.size/);
+      matchArray = value.startsWith('Rect') || value.startsWith('rect');
       if (matchArray) {
-        return `size()`;
-      }
-      matchArray = value.match(/Rect/);
-      if (matchArray) {
+        if (!importCode.includes('Rect')) {
+          importCode.push('Rect')
+        }
+        if (value.includes('Rect.')) {
+          return value;
+        }
         return `new Rect()`;
       }
-      matchArray = value.match(/cc.rect/);
+      matchArray = value.startsWith('Mat3') || value.startsWith('mat3');
       if (matchArray) {
-        return `rect()`;
-      }
-      matchArray = value.match(/Mat3/);
-      if (matchArray) {
+        if (!importCode.includes('Mat3')) {
+          importCode.push('Mat3')
+        }
+        if (value.includes('Mat3.')) {
+          return value;
+        }
         return `new Mat3()`;
       }
-      matchArray = value.match(/mat3/);
+      matchArray = value.startsWith('Mat4') || value.startsWith('mat4');
       if (matchArray) {
-        return `mat3()`;
-      }
-      matchArray = value.match(/Mat4/);
-      if (matchArray) {
+        if (!importCode.includes('Mat4')) {
+          importCode.push('Mat4')
+        }
+        if (value.includes('Mat4.')) {
+          return value;
+        }
         return `new Mat4()`;
       }
-      matchArray = value.match(/mat4/);
+      matchArray = value.startsWith('Quat') || value.startsWith('quat');
       if (matchArray) {
-        return `mat4()`;
-      }
-      matchArray = value.match(/Quat/);
-      if (matchArray) {
+        if (!importCode.includes('Quat')) {
+          importCode.push('Quat')
+        }
+        if (value.includes('Quat.')) {
+          return value;
+        }
         return `new Quat()`;
       }
-      matchArray = value.match(/cc.quat/);
-      if (matchArray) {
-        return `quat()`;
-      }
-      if (value.includes('cc.')) {
-        value = value.replace(/cc./, '');
-        if (cc[value]) {
-          return null;
-        }
-      }
-      else if (cc[value]) {
+      if (cc[value]) {
         return null;
       }
       return `'${value}'`;
@@ -710,19 +729,26 @@
           // propCode += `@visible(${prop.visible})\n`;
         }
 
+        let isArray = false;
         if (fieldType === 'public') {
           propCode += '    ';
           pushDecorators('property');
           if (prop.type !== undefined) {
             let type = getTypeValue(prop.type)
             if (prop.default && prop.default.startsWith('[') && prop.default.endsWith(']')) {
-              propCode += `@property([${type}])\n`;
+              isArray = true;
+              if (type.startsWith('[') && type.endsWith(']')) {
+                propCode += `@property(${type})`;
+              } else {
+                propCode += `@property([${type}])`;
+              }
             } else {
-              propCode += `@property(${type})\n`;
+              propCode += `@property(${type})`;
             }
           } else {
-            propCode += `@property\n`;
+            propCode += `@property`;
           }
+          propCode += '\n';
         }
         if (prop.hasGet !== undefined || prop.hasGet !== undefined) {
           if (prop.hasGet !== undefined) {
@@ -736,22 +762,26 @@
         }
         else {
           propCode += `    ${fieldType} ${key}`;
-          if (prop.type !== undefined) {
-            // 特殊字段：array:type
-            propCode += `: ${getTypeValue(prop.type)}`;
-          }
+          // if (prop.type !== undefined) {
+          //   // 特殊字段：array:type
+          //   if (isArray) {
+          //     // 如果是数组就跳过，不设置 :[]
+          //   } else {
+          //     propCode += `: ${getTypeValue(prop.type)}`;
+          //   }
+          // }
           if (prop.default !== undefined) {
             prop.default = getDefaultValue(prop.default);
             if (prop.default === '') {
               propCode += ` = '${prop.default}'`;
             }
             else {
-              if (prop.default === null && prop.type !== undefined) {
-                propCode += ` | null = ${prop.default}`;
-              }
-              else {
+              // if (prop.default === null && prop.type !== undefined) {
+              //   propCode += ` | null = ${prop.default}`;
+              // }
+              // else {
                 propCode += ` = ${prop.default}`;
-              }
+              // }
             }
           }
           propCode += ';\n';

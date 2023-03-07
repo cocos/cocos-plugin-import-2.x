@@ -10,14 +10,7 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 ## Update Notes
 
-  - Support for migration of the textureUuid field in plist
-  - Fix buttons click invalid after v2.x migration to v3.0.0
-  - Fix the problem that the class name of the ts script is lost when parsing
-  - Fix the issue of SpriteFrame missing in animation clips
-  - Fix the problem of missing data in the component ProgressBar
-  - Fixes an issue in v2.x with the StudioWidget component that caused an error in the scene after an upgrade
-  - Fix script upgrade property not setting type
-  - Fix GetSet format error in JS code
+  - Fixed the issue of incorrect parsing of js property format.
 
 ## How to update the plugin
 
