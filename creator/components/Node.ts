@@ -1,5 +1,5 @@
 'use strict';
-import { getGroupLayerByIndex, fromEuler, hasUIRenderComponent } from "../common/utlis";
+import { getGroupLayerByIndex, fromEuler, hasUIRenderComponent, hasCanvasComponent } from '../common/utlis';
 import { UITransform } from "./UITransform";
 import { UIOpacity } from "./UIOpacity";
 
@@ -86,6 +86,10 @@ export class Node {
             if (key === '__type__' || value === undefined || value === null) { continue; }
             if (key === '_groupIndex' || key === 'groupIndex') {
                 let layer = await getGroupLayerByIndex(value);
+                // 如果是 Canvas 并且 layer 是默认的，就设置为 UI_2D
+                if (layer === 1 && hasCanvasComponent(node, json2D)) {
+                    layer = 1 << 25;
+                }
                 if (!layer) {
                     console.warn(`The group layer: ${layer} no found. node name: ${node._name}`);
                     layer = value;

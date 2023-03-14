@@ -60,6 +60,9 @@ export async function setGroupLayerByIndex(index: number, group: string) {
     if (!userLayers) {
         userLayers = [];
     } else {
+        if (group === 'default') {
+            group = 'Default';
+        }
         layer = userLayers.find((layer: any) => layer.name === group);
     }
     if (!layer) {
@@ -521,6 +524,20 @@ export function hasUIRenderComponent(target: any, json: any) {
         const child = json[id];
         if (hasUIRenderComponent(child, json)) {
             return true;
+        }
+    }
+    return false;
+}
+
+export function hasCanvasComponent(node: any, json2D: any) {
+    for (const componentData of node._components) {
+        const id = componentData.__id__;
+        const component = json2D[id];
+        if (component) {
+            const __type__ = component.__type__;
+            if (__type__ === 'cc.Canvas') {
+                return true;
+            }
         }
     }
     return false;
