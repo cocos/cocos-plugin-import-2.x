@@ -25,7 +25,7 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 ![img_1.png](img_1.png)
 
-### Editor Version <= 3.6.0
+### Editor Version <= 3.6.x
 
 1. Store in the relevant designated location, as follows
     - To apply globally (all projects), just store the plugins folder under **User/.CocosCreator/extensions**
