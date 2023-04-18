@@ -18,7 +18,7 @@
 
 ### 编辑器版本 >= 3.7.0
 
-1. 通过主菜单打开扩展管理器``
+1. 通过主菜单打开扩展管理器
 
 ![img.png](https://user-images.githubusercontent.com/7564028/232646751-dbb30224-00f2-4b4f-9a92-d9c150fe81d2.png)
 
