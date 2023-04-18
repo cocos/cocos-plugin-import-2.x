@@ -20,12 +20,11 @@
 
 1. 通过主菜单打开扩展管理器``
 
-![img.png](img.png)
+![img.png](https://user-images.githubusercontent.com/7564028/232646751-dbb30224-00f2-4b4f-9a92-d9c150fe81d2.png)
 
 2. 找到 **plugin-import-2x** 插件点击安装或者更新，获取最新版本
 
-![img_1.png](img_1.png)
-
+![img_1.png](https://user-images.githubusercontent.com/7564028/232646762-a07b971d-0e38-4808-8b4d-d884baef3591.png)
 
 ### 编辑器版本 <= 3.6.x
 

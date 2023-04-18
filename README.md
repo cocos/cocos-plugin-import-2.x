@@ -19,11 +19,11 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 1. Open Extension Manager from the main menu
 
-![img.png](img.png)
+![img.png](https://user-images.githubusercontent.com/7564028/232646751-dbb30224-00f2-4b4f-9a92-d9c150fe81d2.png)
 
 2. Find the **plugin-import-2x** plugin and click Install or Update to get the latest version
 
-![img_1.png](img_1.png)
+![img_1.png](https://user-images.githubusercontent.com/7564028/232646762-a07b971d-0e38-4808-8b4d-d884baef3591.png)
 
 ### Editor Version <= 3.6.x
 
