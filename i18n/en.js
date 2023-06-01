@@ -61,4 +61,10 @@ module.exports = {
               'target fbx {fbxName} {asset({fbxUuid})} \n Using a list of custom textures:\n {textureAssets}',
 
     effect_tips: 'The current 3.0 and 2.x Effect are written very differently and need to be migrated by the user, Effect: {name} {asset({uuid})}.',
+
+    imported_dialog: {
+        message: 'After importing, need to refresh the editor.',
+        btn_refresh: 'Refresh and close window',
+        btn_continue: 'Continue importing',
+    }
 };

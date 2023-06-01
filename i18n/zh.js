@@ -58,4 +58,10 @@ module.exports = {
               '目标 fbx：{fbxName} {asset({fbxUuid})} \n 使用自定义纹理列表：\n {textureAssets}',
 
     effect_tips: '目前 3.0 与 2.x Effect 的写法差异大，需要用户自行导入，Effect: {name} {asset({uuid})}',
+
+    imported_dialog: {
+        message: '导入完毕，需要刷新编辑器。',
+        btn_refresh: '刷新并关闭窗口',
+        btn_continue: '继续导入',
+    }
 };

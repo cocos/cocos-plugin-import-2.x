@@ -1,5 +1,4 @@
 'use strict';
-
 // @ts-ignore
 import { shell } from 'electron';
 // @ts-ignore
@@ -32,6 +31,12 @@ const { I18n, Dialog, Message } = Editor;
 
 const MANUAL: string = 'https://github.com/cocos-creator/migrate-cocos-creator2.x-plugin';
 
+const PackageJSON = readJSONSync(join(__dirname, '../package.json'))
+
+function t(key: string, args?: any) {
+    return args ? I18n.t(`${PackageJSON.name}.${key}`, args) : I18n.t(`${PackageJSON.name}.${key}`);
+}
+
 exports.linteners = {
     resize() {
         this.$.tree.render(true);
@@ -41,7 +46,7 @@ exports.linteners = {
 exports.template = `
     <header>
         <h1>
-            <ui-label value="i18n:plugin-import-2x.title"></ui-label>
+            <ui-label value="i18n:${PackageJSON.name}.title"></ui-label>
         </h1>
         
         <ui-progress></ui-progress>        
@@ -49,7 +54,7 @@ exports.template = `
         <ui-file 
             class="project" 
             type="directory"
-            placeholder="i18n:plugin-import-2x.select_dialog.title"
+            placeholder="i18n:${PackageJSON.name}.select_dialog.title"
         ></ui-file>
     </header>
     <section>
@@ -59,20 +64,20 @@ exports.template = `
     <footer>
         
         <ui-button class="btn_notes">
-            <ui-label value="i18n:plugin-import-2x.btn_notes"></ui-label>
+            <ui-label value="i18n:${PackageJSON.name}.btn_notes"></ui-label>
         </ui-button>
-<!--        <ui-input class="search" placeholder="i18n:plugin-import-2x.search"></ui-input>-->
+<!--        <ui-input class="search" placeholder="i18n:${PackageJSON.name}.search"></ui-input>-->
 
 <!--        <ui-button class="serialize" style="display: none">-->
 <!--            <ui-label value="serialize"></ui-label>-->
 <!--        </ui-button>-->
         
         <ui-button class="import">
-            <ui-label value="i18n:plugin-import-2x.btnImport"></ui-label>
+            <ui-label value="i18n:${PackageJSON.name}.btnImport"></ui-label>
         </ui-button>       
     </footer>
     
-    <ui-label class="tips" value="i18n:plugin-import-2x.tips"></ui-label>
+    <ui-label class="tips" value="i18n:${PackageJSON.name}.tips"></ui-label>
     
     <iframe class="engine2D" style="display: none"></iframe>
 `;
@@ -198,8 +203,8 @@ exports.methods = {
         const path = join(root, 'assets');
         const projectPath = join(root, 'project.json');
         if (!existsSync(path) || !existsSync(projectPath)) {
-            Dialog.warn(I18n.t('plugin-import-2x.warn_dialog.message'), {
-                detail: I18n.t('plugin-import-2x.warn_dialog.detail', {
+            Dialog.warn(t('warn_dialog.message'), {
+                detail: t('warn_dialog.detail', {
                     path: root,
                 }),
             });
@@ -208,8 +213,8 @@ exports.methods = {
 
         const project = readJSONSync(projectPath);
         if (!project.version || compareVersion(project.version, '2.4.3') === -1) {
-            Dialog.warn(I18n.t('plugin-import-2x.warn_dialog.title'), {
-                detail: I18n.t('plugin-import-2x.warn_dialog.version', { version: project.version }),
+            Dialog.warn(t('warn_dialog.title'), {
+                detail: t('warn_dialog.version', { version: project.version }),
             });
         }
 
@@ -244,7 +249,7 @@ exports.methods = {
             this.totalTree.push(data);
         });
         this.progressCurrentIdx = 0;
-        this.$.progress.message = I18n.t('plugin-import-2x.import_message_init', {
+        this.$.progress.message = t('import_message_init', {
             current: this.progressCurrentIdx,
             total: this.list.length,
         });
@@ -386,7 +391,7 @@ exports.methods = {
             this.progressCurrentIdx = i + 1;
             this.progressCurrentName = detail.value;
             this.$.progress.value = this.progressCurrentIdx / list.length * 100;
-            this.$.progress.message = I18n.t('plugin-import-2x.import_message', {
+            this.$.progress.message = t('.import_message', {
                 // @ts-ignore
                 current: this.progressCurrentIdx,
                 total: list.length,
@@ -425,22 +430,32 @@ exports.methods = {
         }
 
         this.replaceScript();
-        console.log(Editor.I18n.t('plugin-import-2x.import_refresh'));
+        console.log(t('import_refresh'));
         // await Message.request('asset-db', 'refresh-asset', 'db://assets');
-        console.log(Editor.I18n.t('plugin-import-2x.import_refreshend'));
+        console.log(t('import_refreshend'));
         try {
             await this.replaceFbx();
         }
         catch (e) {}
 
-        MigrateManager.logs.length > 0 && console.log(I18n.t('plugin-import-2x.no_support_type', {
+        MigrateManager.logs.length > 0 && console.log(t('no_support_type', {
             type: MigrateManager.logs.toString()
         }));
 
         this.$.progress.value = 100;
-        this.$.progress.message = I18n.t('plugin-import-2x.complete_message');
+        this.$.progress.message = t('complete_message');
         // 统一刷新
-        Editor.Message.send('asset-db', 'refresh');
+        const { response  } = await Dialog.info(t('imported_dialog.message'), {
+            default: 0,
+            buttons: [
+                t('imported_dialog.btn_refresh'),
+                t('imported_dialog.btn_continue'),
+            ]
+        });
+        if (0 === response) {
+            await Editor.Panel.close(`${PackageJSON.name}.creator`);
+            Editor.Message.send('asset-db', 'refresh');
+        }
     },
 
     async onSerializeComponent() {
@@ -460,10 +475,10 @@ exports.ready = async function() {
         if (this.$.progress.message) {
             const total = this.list.length;
             if (this.progressCurrentIdx === total) {
-                this.$.progress.message = I18n.t('plugin-import-2x.complete_message');
+                this.$.progress.message = t('complete_message');
             }
             else if (this.progressCurrentIdx === 0) {
-                this.$.progress.message = I18n.t('plugin-import-2x.import_message_init', {
+                this.$.progress.message = t('import_message_init', {
                     // @ts-ignore
                     current: 0,
                     total: total,
@@ -471,7 +486,7 @@ exports.ready = async function() {
             }
             else {
                 this.$.progress.value = this.progressCurrentIdx / total * 100;
-                this.$.progress.message = I18n.t('plugin-import-2x.import_message', {
+                this.$.progress.message = t('import_message', {
                     // @ts-ignore
                     current: this.progressCurrentIdx,
                     total: total,
@@ -485,7 +500,7 @@ exports.ready = async function() {
         $item.addEventListener('contextmenu', () => {
             Editor.Menu.popup({
                 menu: [{
-                    label: I18n.t('plugin-import-2x.menu.popup_open'),
+                    label: t('menu.popup_open'),
                     click() {
                         shell.showItemInFolder($item.data.detail.file);
                     },
@@ -588,7 +603,7 @@ exports.ready = async function() {
         const path = event.target.value;
         const done = await this.scanProject(path);
         if (done) {
-            Editor.Profile.setConfig('plugin-import-2x', 'import-path', path);
+            Editor.Profile.setConfig(PackageJSON.name, 'import-path', path);
         }
         else {
             this.$.project.value = this.projectRoot;
@@ -599,7 +614,7 @@ exports.ready = async function() {
     this.$.import.addEventListener('confirm', async () => {
         this.$.import.setAttribute('disabled', '');
         await this.importProject();
-        console.log(Editor.I18n.t('plugin-import-2x.complete_message'));
+        console.log(t('complete_message'));
         setTimeout(async () => {
             this.updateTreeState();
             this.$.import.removeAttribute('disabled');
@@ -611,7 +626,7 @@ exports.ready = async function() {
         electron.shell.openExternal(MANUAL);
     });
 
-    const path = await Editor.Profile.getConfig('plugin-import-2x', 'import-path');
+    const path = await Editor.Profile.getConfig(PackageJSON.name, 'import-path');
     this.$.project.value = path;
     await this.scanProject(path);
     // await this.scanProject('/Users/huangyanbin/helloworld-typescript');
