@@ -40,11 +40,11 @@
     padding: 10px 20px 10px 20px;
 }
 
-:host > footer > .btn_notes {
-    float: left;
-}
-
 :host > footer > .import {
     width: 80px;
     float: right;
+}
+
+:host > footer > .version {
+    float: left;
 }

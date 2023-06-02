@@ -13,8 +13,6 @@ module.exports = {
 
     search: '搜索 name',
 
-    btn_notes: '使用说明',
-
     effect_warn_tips: '{name} 该 effect 过于复杂，需要进行手动转换',
 
     plugin_js_tips: `注意：已把原脚本注释，由于脚本变动过大，转换的时候可能有遗落，需要自行手动转换`,
@@ -47,6 +45,8 @@ module.exports = {
     import_log: '导入 {path}',
     import_refresh: '-- 刷新中 --',
     import_refreshend: '-- 刷新完成 --',
+
+    import_version: '版本 {version}',
 
     no_support_type: '不支持类型：[{type}]',
 

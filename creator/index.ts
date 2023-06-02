@@ -62,23 +62,11 @@ exports.template = `
     </section>
                 
     <footer>
-        
-        <ui-button class="btn_notes">
-            <ui-label value="i18n:${PackageJSON.name}.btn_notes"></ui-label>
-        </ui-button>
-<!--        <ui-input class="search" placeholder="i18n:${PackageJSON.name}.search"></ui-input>-->
-
-<!--        <ui-button class="serialize" style="display: none">-->
-<!--            <ui-label value="serialize"></ui-label>-->
-<!--        </ui-button>-->
-        
+        <ui-label class="version"></ui-label>
         <ui-button class="import">
             <ui-label value="i18n:${PackageJSON.name}.btnImport"></ui-label>
         </ui-button>       
     </footer>
-    
-    <ui-label class="tips" value="i18n:${PackageJSON.name}.tips"></ui-label>
-    
     <iframe class="engine2D" style="display: none"></iframe>
 `;
 
@@ -90,7 +78,7 @@ exports.$ = {
     // serialize: '.serialize',
     search: '.search',
     engine2D: '.engine2D',
-    notes: '.btn_notes',
+    version: '.version',
 };
 
 exports.methods = {
@@ -496,6 +484,8 @@ exports.ready = async function() {
         }
     });
 
+    this.$.version.value = t('import_version', { version: PackageJSON.version });
+
     this.$.tree.setTemplateInit('item', ($item: any) => {
         $item.addEventListener('contextmenu', () => {
             Editor.Menu.popup({
@@ -621,10 +611,10 @@ exports.ready = async function() {
         });
     });
 
-    this.$.notes && this.$.notes.addEventListener('confirm', () => {
-        const electron = require('electron');
-        electron.shell.openExternal(MANUAL);
-    });
+    // this.$.notes && this.$.notes.addEventListener('confirm', () => {
+    //     const electron = require('electron');
+    //     electron.shell.openExternal(MANUAL);
+    // });
 
     const path = await Editor.Profile.getConfig(PackageJSON.name, 'import-path');
     this.$.project.value = path;

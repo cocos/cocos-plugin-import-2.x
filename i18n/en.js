@@ -11,8 +11,6 @@ module.exports = {
 
     tips: "Tips: If an error occurs while importing a project, you can update the plugin in the 'Manual' panel to update the plugin or give feedback on any possible issues.",
 
-    btn_notes: 'Manual',
-
     effect_warn_tips: '{name} The effect is too complex and needs to be converted manually',
 
     plugin_js_tips: `Note: The original script has been commented out, due to the large number of changes in the script, there may be missing in the conversion, you need to convert it manually`,
@@ -47,6 +45,8 @@ module.exports = {
     import_log: 'importing {path}',
     import_refresh: '-- Refreshing --',
     import_refreshend: '-- Refresh completed --',
+
+    import_version: 'Version {version}',
 
     no_support_type: 'Unsupported type: [{type}]',
 
