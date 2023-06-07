@@ -10,8 +10,7 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 ## Update Notes
 
-  - Fixed the issue of incorrect parsing of js property format.
-  - Fix Canvas Layer error
+  - Optimize the interface to add version display and prompt after import
 
 ## How to update the plugin
 
