@@ -1,46 +1,47 @@
 const JSZip = require('./lib/jszip.min');
-const { join, basename } = require('path');
-const { writeFileSync, readdirSync, statSync, readFileSync } = require('fs-extra');
+const fs = require('node:fs');
+const { join, resolve } = require('node:path');
+const { tmpdir } = require('node:os');
+const { execFileSync } = require('node:child_process');
 
-const skips = ['.idea', 'unpack', '.DS_Store', '.git', '.idea', '.gitignore'];
+const root = resolve(__dirname, '..');
+const output = join(root, 'artifacts/plugin-import-2x.zip');
+const files = [
+    'package.json', 'package-lock.json', 'dist', 'creator', 'i18n', 'static',
+    'README.md', 'README.zh-cn.md', 'readme', 'extension_cover.png', 'img.png', 'img_1.png',
+];
 
-function step(path, zip, name, skip) {
-  name = name || basename(path);
-  if (skips.includes(name)) {
-    return;
-  }
-  const stat = statSync(path);
-  if (stat.isDirectory()) {
-    const files = readdirSync(path);
-    for (let file of files) {
-      step(join(path, file), skip ? zip : zip.folder(name));
+function add(zip, directory, name) {
+    const file = join(directory, name);
+    if (fs.statSync(file).isDirectory()) {
+        for (const child of fs.readdirSync(file).sort()) add(zip, directory, `${name}/${child}`);
+    } else {
+        // Fixed timestamps make identical inputs produce identical archives.
+        zip.file(name, fs.readFileSync(file), { date: new Date('2000-01-01T00:00:00Z'), createFolders: false });
     }
-  } else if (stat.isFile()) {
-    zip.file(name, readFileSync(path));
-  } else {
-    console.error(`${path} was not added to zip!`);
-  }
 }
 
-function unpack() {
-  const ROOT_PATH = join(__dirname, '../../plugin-import-2x');
-  const OUT_PATH = join(ROOT_PATH, 'unpack/plugin-import-2x.zip');
-
-  const jsZip = new JSZip();
-
-  step(ROOT_PATH, jsZip, 'plugin-import-2x', true);
-
-  jsZip.generateAsync({
-    type: 'nodebuffer',
-    compression: 'DEFLATE',
-    compressionOptions: {
-      level: 9,
-    },
-  }).then(content => {
-    writeFileSync(OUT_PATH, content);
-  });
+async function pack() {
+    const stage = fs.mkdtempSync(join(tmpdir(), 'plugin-import-2x-'));
+    try {
+        for (const name of ['package.json', 'package-lock.json']) {
+            fs.copyFileSync(join(root, name), join(stage, name));
+        }
+        execFileSync(process.platform === 'win32' ? 'npm.cmd' : 'npm',
+            ['ci', '--omit=dev', '--ignore-scripts', '--no-audit', '--no-fund'],
+            { cwd: stage, stdio: 'inherit' });
+        fs.rmSync(join(stage, 'node_modules/.package-lock.json'), { force: true });
+        const zip = new JSZip();
+        for (const name of files) add(zip, root, name);
+        add(zip, stage, 'node_modules');
+        const data = await zip.generateAsync({
+            type: 'nodebuffer', compression: 'DEFLATE', compressionOptions: { level: 9 },
+        });
+        fs.mkdirSync(join(root, 'artifacts'), { recursive: true });
+        fs.writeFileSync(output, data);
+        console.log(`Created ${output}`);
+    } finally {
+        fs.rmSync(stage, { recursive: true, force: true });
+    }
 }
-
-(async () => {
-  unpack();
-})();
+pack().catch(error => { console.error(error); process.exitCode = 1; });

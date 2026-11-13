@@ -15,6 +15,9 @@
 
 ## 如何更新插件
 
+下载[最新插件 ZIP](https://github.com/cocos/cocos-plugin-import-2.x/releases/latest/download/plugin-import-2x.zip)，解压到 `extensions/plugin-import-2x` 文件夹。
+
+
 ### 编辑器版本 >= 3.7.0
 
 1. 通过主菜单打开扩展管理器
@@ -57,3 +60,9 @@
 
 如果现有项目因为特殊原因需要升级，并且遇到了技术上或者工作量上的困难，也可以联系 [liyan@cocos.com](mailto:liyan@cocos.com) 获取我们的人工协助！
 
+
+## 构建与发布
+
+使用 Node.js 22，执行 `npm ci`、`npm run build` 和 `npm test`。安装包输出到 `artifacts/plugin-import-2x.zip`，仅包含插件文件和运行依赖。编译执行 TypeScript 转译和语法检查，不包含依赖 Creator SDK 的完整类型检查。
+
+PR 自动构建并验证安装包。发布时递增 `package.json` 的版本号，并同步 `package-lock.json`，合并到上游 `main` 后自动创建对应的 `v版本号` Release。版本号未变化时只运行检查。已发布版本不会覆盖；失败的发布可重跑 Actions。历史 `main` Release 保留，新版 ZIP 无需提交到仓库。

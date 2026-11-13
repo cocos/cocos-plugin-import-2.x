@@ -14,6 +14,9 @@ As the editor does not currently support hot updates for plugins, if developers 
 
 ## How to update the plugin
 
+Download [the latest plugin ZIP](https://github.com/cocos/cocos-plugin-import-2.x/releases/latest/download/plugin-import-2x.zip) and extract it into an `extensions/plugin-import-2x` folder.
+
+
 ### Editor Version >= 3.7.0
 
 1. Open Extension Manager from the main menu
