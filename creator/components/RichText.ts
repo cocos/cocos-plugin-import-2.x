@@ -13,6 +13,7 @@ export const RICHTEXT = {
     "_string": "<color=#00ff00>Rich</color><color=#0fffff>Text</color>",
     "_horizontalAlign": 0,
     "_fontSize": 40,
+    // Available since Creator 3.8.1. Earlier engines ignore this serialized field.
     "_fontColor": {
         "__type__": "cc.Color",
         "r": 255,
