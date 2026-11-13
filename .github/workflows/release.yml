@@ -1,0 +1,77 @@
+name: Build and release
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      publish: ${{ steps.version.outputs.publish }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Check version
+        id: version
+        run: node scripts/release-version.js
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm run build
+      - run: npm test
+      - uses: actions/upload-artifact@v4
+        with:
+          name: plugin-import-2x
+          path: artifacts/plugin-import-2x.zip
+          if-no-files-found: error
+
+  release:
+    needs: build
+    if: >-
+      github.event_name == 'push' &&
+      github.repository == 'cocos/cocos-plugin-import-2.x' &&
+      needs.build.outputs.publish == 'true'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    concurrency:
+      group: publish-plugin
+      cancel-in-progress: false
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: plugin-import-2x
+          path: artifacts
+      - name: Publish versioned release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ needs.build.outputs.tag }}
+          RELEASE_COMMIT: ${{ github.sha }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          releases=$(gh api --paginate "repos/$GH_REPO/releases")
+          existing=$(jq -r --arg tag "$RELEASE_TAG" '.[] | select(.tag_name == $tag) | if .draft then "draft" else "published" end' <<< "$releases")
+          if [ "$existing" = published ]; then
+            echo "$RELEASE_TAG is already published; leaving it unchanged."
+            exit 0
+          fi
+          if [ "$existing" = draft ]; then
+            gh release upload "$RELEASE_TAG" artifacts/plugin-import-2x.zip --clobber
+          else
+            gh release create "$RELEASE_TAG" artifacts/plugin-import-2x.zip \
+              --target "$RELEASE_COMMIT" --title "$RELEASE_TAG" --generate-notes --draft
+          fi
+          gh release edit "$RELEASE_TAG" --draft=false --latest
