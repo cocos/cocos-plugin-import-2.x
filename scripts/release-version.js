@@ -19,11 +19,6 @@ if (require.main === module) {
     const previous = JSON.parse(execFileSync('git', ['show', `${base}:package.json`], { encoding: 'utf8' })).version;
     const current = require('../package.json').version;
     const changed = versionChanged(previous, current);
-    const notesPath = require('node:path').join(__dirname, '..', 'release-notes', `v${current}.md`);
-    const notes = fs.readFileSync(notesPath, 'utf8');
-    if (!notes.trim()) throw new Error(`Release notes are empty: ${notesPath}`);
-    fs.mkdirSync('artifacts', { recursive: true });
-    fs.writeFileSync('artifacts/release-notes.md', notes);
     fs.appendFileSync(process.env.GITHUB_OUTPUT, `tag=v${current}\npublish=${changed}\n`);
     console.log(`${previous} -> ${current}; version changed: ${changed}`);
 }

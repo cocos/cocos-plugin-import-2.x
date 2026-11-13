@@ -33,7 +33,7 @@ jobs:
       - uses: actions/upload-artifact@v7.0.2
         with:
           name: plugin-import-2x
-          path: artifacts/
+          path: artifacts/plugin-import-2x.zip
           if-no-files-found: error
 
   release:
@@ -68,10 +68,24 @@ jobs:
             echo "$RELEASE_TAG is already published; leaving it unchanged."
             exit 0
           fi
+          previous=$(jq -rs --arg tag "$RELEASE_TAG" '
+            def version: ltrimstr("v") | split(".") | map(tonumber);
+            [.[][] | select(.draft == false and .prerelease == false)
+              | .tag_name | select(test("^v[0-9]+\\.[0-9]+\\.[0-9]+$"))
+              | select(version < ($tag | version))]
+            | sort_by(version) | last // empty' <<< "$releases")
+          if [ -n "$previous" ]; then
+            gh api --method POST "repos/$GH_REPO/releases/generate-notes" \
+              -f tag_name="$RELEASE_TAG" -f target_commitish="$RELEASE_COMMIT" \
+              -f previous_tag_name="$previous" --jq .body > "$RUNNER_TEMP/release-notes.md"
+          else
+            printf '首次正式版本发布。\n\n[提交历史](https://github.com/%s/commits/%s)\n' \
+              "$GH_REPO" "$RELEASE_COMMIT" > "$RUNNER_TEMP/release-notes.md"
+          fi
           if [ "$existing" = draft ]; then
             gh release upload "$RELEASE_TAG" artifacts/plugin-import-2x.zip --clobber
           else
             gh release create "$RELEASE_TAG" artifacts/plugin-import-2x.zip \
-              --target "$RELEASE_COMMIT" --title "$RELEASE_TAG" --notes-file artifacts/release-notes.md --draft
+              --target "$RELEASE_COMMIT" --title "$RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md" --draft
           fi
-          gh release edit "$RELEASE_TAG" --notes-file artifacts/release-notes.md --draft=false --latest
+          gh release edit "$RELEASE_TAG" --notes-file "$RUNNER_TEMP/release-notes.md" --draft=false --latest
