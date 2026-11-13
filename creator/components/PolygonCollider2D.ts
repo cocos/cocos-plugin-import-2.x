@@ -32,7 +32,7 @@ export class PolygonCollider2D {
             const value = json2D[key];
             if (key === '__type__' || value === undefined || value === null) { continue; }
             if (key === 'points') {
-                source._point = value;
+                source._points = value;
             }
             else {
                 source[key] = value;
