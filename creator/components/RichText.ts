@@ -1,6 +1,6 @@
 'use strict';
 import { ImporterBase } from "../common/base";
-import { getBlendFactor2DTo3D } from "../common/utlis";
+import { compareVersion, getBlendFactor2DTo3D } from "../common/utlis";
 
 export const RICHTEXT = {
     "__type__": "cc.RichText",
@@ -13,14 +13,6 @@ export const RICHTEXT = {
     "_string": "<color=#00ff00>Rich</color><color=#0fffff>Text</color>",
     "_horizontalAlign": 0,
     "_fontSize": 40,
-    // Available since Creator 3.8.1. Earlier engines ignore this serialized field.
-    "_fontColor": {
-        "__type__": "cc.Color",
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 255,
-    },
     "_maxWidth": 0,
     "_fontFamily": "Arial",
     "_font": null,
@@ -34,11 +26,21 @@ export const RICHTEXT = {
 export class RichText {
 
     static create() {
-        return JSON.parse(JSON.stringify(RICHTEXT));
+        const source = JSON.parse(JSON.stringify(RICHTEXT));
+        if (compareVersion(Editor.App.version, '3.8.1') >= 0) {
+            source._fontColor = {
+                "__type__": "cc.Color",
+                "r": 255,
+                "g": 255,
+                "b": 255,
+                "a": 255,
+            };
+        }
+        return source;
     }
 
     static async migrate(index: number, json2D: any) {
-        const source = JSON.parse(JSON.stringify(RICHTEXT));
+        const source = RichText.create();
         const richText = json2D[index];
         for (let key in richText) {
             const value = richText[key];
@@ -48,7 +50,7 @@ export class RichText {
             if (key === 'node') {
                 source.node = value;
                 const node = json2D[value.__id__];
-                if (node && node._color) {
+                if (source._fontColor && node && node._color) {
                     source._fontColor.r = node._color.r;
                     source._fontColor.g = node._color.g;
                     source._fontColor.b = node._color.b;
